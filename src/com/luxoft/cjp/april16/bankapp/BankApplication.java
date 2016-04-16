@@ -38,11 +38,11 @@ class BankApplication {
         accounts[3] = new SavingAccount(2100);
         accounts[4] = new SavingAccount(2000);
 
-        accounts[5] = new CheckingAccount(2000);
-        accounts[6] = new CheckingAccount(1000);
-        accounts[7] = new CheckingAccount(1400);
-        accounts[8] = new CheckingAccount(2100);
-        accounts[9] = new CheckingAccount(2000);
+        accounts[5] = new CheckingAccount(2000, 1000);
+        accounts[6] = new CheckingAccount(1000, 100);
+        accounts[7] = new CheckingAccount(1400, 3000);
+        accounts[8] = new CheckingAccount(2100, 2000);
+        accounts[9] = new CheckingAccount(2000, 1000);
 
         clients[0].addAccount(accounts[0]);
         clients[0].addAccount(accounts[1]);
