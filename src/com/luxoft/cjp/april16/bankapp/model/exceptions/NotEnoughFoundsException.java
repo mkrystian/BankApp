@@ -3,6 +3,7 @@ package com.luxoft.cjp.april16.bankapp.model.exceptions;
 import com.luxoft.cjp.april16.bankapp.model.Account;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-13.
  */
 public class NotEnoughFoundsException extends BankException {
@@ -26,9 +27,7 @@ public class NotEnoughFoundsException extends BankException {
     }
 
     public String getInfo(){
-        StringBuilder output = new StringBuilder();
-        output.append("Amount: ").append(amount).append(" |  Balance: ").append(balance);
-        return output.toString();
+        return "Amount: " + amount + " |  Balance: " + balance;
     }
 
     public Account getAccount() {

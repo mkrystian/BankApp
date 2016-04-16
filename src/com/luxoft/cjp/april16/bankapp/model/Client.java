@@ -7,13 +7,14 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public class Client implements Report {
 
+    private final List<Account> accounts = new ArrayList<>();
     private String name;
     private Gender gender;
-    private final List<Account> accounts = new ArrayList<>();
     private Account activeAccount;
     private float initialOverdraft = 0;
 

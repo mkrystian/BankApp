@@ -4,13 +4,15 @@ import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.OverDraftLimitExceededException;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public class CheckingAccount extends AbstractAccount {
 
     private float overdraft = 0;
 
-    public CheckingAccount( float overdraft ){
+    public CheckingAccount(float balance, float overdraft) {
+        super(balance);
         if( overdraft < 0 ) throw new IllegalArgumentException("Overdraft could not be negative");
         this.overdraft = overdraft;
     }

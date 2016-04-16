@@ -6,6 +6,7 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public class BankServiceImpl implements BankService {
