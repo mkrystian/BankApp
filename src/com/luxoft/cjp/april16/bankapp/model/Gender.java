@@ -1,6 +1,7 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public enum Gender {
@@ -17,7 +18,4 @@ public enum Gender {
         return salutation;
     }
 
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
-    }
 }

@@ -3,13 +3,13 @@ package com.luxoft.cjp.april16.bankapp.model;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public class SavingAccount extends AbstractAccount {
 
     public SavingAccount( float balance ){
-        if( balance < 0 ) throw new IllegalArgumentException("Balance could not be negative in saving account");
-        super.setBalance(balance);
+        super(balance);
     }
 
     @Override

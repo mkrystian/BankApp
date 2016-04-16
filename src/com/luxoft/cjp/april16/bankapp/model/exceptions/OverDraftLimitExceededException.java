@@ -3,6 +3,7 @@ package com.luxoft.cjp.april16.bankapp.model.exceptions;
 import com.luxoft.cjp.april16.bankapp.model.Account;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-13.
  */
 public class OverDraftLimitExceededException extends NotEnoughFoundsException {
@@ -20,9 +21,6 @@ public class OverDraftLimitExceededException extends NotEnoughFoundsException {
 
     @Override
     public String getInfo(){
-        StringBuilder output = new StringBuilder();
-        output.append(super.getInfo()).append(" | Overdraft: ").append(overdraft);
-
-        return output.toString();
+        return super.getInfo() + " | Overdraft: " + overdraft;
     }
 }

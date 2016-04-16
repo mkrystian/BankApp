@@ -3,6 +3,7 @@ package com.luxoft.cjp.april16.bankapp.model.exceptions;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-13.
  */
 public class ClientExistsException extends BankException {

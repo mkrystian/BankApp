@@ -1,16 +1,20 @@
 package com.luxoft.cjp.april16.bankapp.model;
+
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
+ * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
 public class Bank implements Report {
 
     private final List<Client> clients = new ArrayList<>();
-    private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<ClientRegistrationListener>();
+    private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
 
     {
         clientRegistrationListeners.add(new ClientRegistrationListener() {
@@ -65,7 +69,14 @@ public class Bank implements Report {
     /**
      * Created by KMajewski on 2016-04-13.
      */
-    public class EmailNotyficationListener implements ClientRegistrationListener {
+    public interface ClientRegistrationListener {
+        void onClientAdded(Client client);
+    }
+
+    /**
+     * Created by KMajewski on 2016-04-13.
+     */
+    public class EmailNotificationListener implements ClientRegistrationListener {
         @Override
         public void onClientAdded(Client client) {
             StringBuilder output = new StringBuilder();
@@ -88,12 +99,5 @@ public class Bank implements Report {
                     .append(" had been created#");
             System.out.println(output);
         }
-    }
-
-    /**
-     * Created by KMajewski on 2016-04-13.
-     */
-    public interface ClientRegistrationListener {
-        void onClientAdded(Client client);
     }
 }
