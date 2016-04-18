@@ -10,23 +10,28 @@ import java.util.List;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-public class Client implements Report {
+public class Client implements Report, Comparable {
 
+    private static int autoincrement = 0;
     private final List<Account> accounts = new ArrayList<>();
+    private int id = ++autoincrement;
+    private String pesel;
     private String name;
     private Gender gender;
     private Account activeAccount;
     private float initialOverdraft = 0;
 
 
-    public Client(String name, Gender gender) {
+    public Client(String name, Gender gender, String pesel) {
         this.name = name;
         this.gender = gender;
+        this.pesel = pesel;
     }
 
-    public Client(String name, Gender gender, float initialOverdraft) {
+    public Client(String name, Gender gender, String pesel, float initialOverdraft) {
         this.name = name;
         this.gender = gender;
+        this.pesel = pesel;
         this.initialOverdraft = initialOverdraft;
     }
 
@@ -72,6 +77,11 @@ public class Client implements Report {
         System.out.println("------------------------------------------------------------------");
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id) + "|" + name + "|" + gender.getName() + "|" + pesel + "|";
+    }
+
     public void addAccount(Account account) {
         accounts.add(account);
     }
@@ -86,5 +96,32 @@ public class Client implements Report {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+
+        Client client = (Client) o;
+
+        return pesel.equals(client.pesel);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return pesel.hashCode();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+
+        Client object2 = (Client) o;
+        return id - object2.getId();
     }
 }

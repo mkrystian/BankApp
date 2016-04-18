@@ -4,6 +4,7 @@ import com.luxoft.cjp.april16.bankapp.model.Account;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 
+import java.util.List;
 
 
 /**
@@ -15,4 +16,6 @@ public interface BankService {
     void removeClient(Bank bank, Client client);
     void addAccount(Client client, Account account);
     void setActiveAccount(Client client, Account account);
+
+    List<Client> getClients(Bank bank);
 }

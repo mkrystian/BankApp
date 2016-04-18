@@ -26,4 +26,9 @@ public class SavingAccount extends AbstractAccount {
         System.out.println("Account type: Saving account");
         super.printReport();
     }
+
+    @Override
+    public String toString() {
+        return "Saving account|" + super.toString();
+    }
 }

@@ -5,6 +5,8 @@ import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 
+import java.util.List;
+
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
@@ -29,12 +31,18 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public void addAccount(Client client, Account account) {
-        client.addAccount( account );
+        client.addAccount(account);
     }
 
     @Override
     public void setActiveAccount(Client client, Account account) {
         client.setActiveAccount( account );
     }
+
+    @Override
+    public List<Client> getClients(Bank bank) {
+        return bank.getClients();
+    }
+
 
 }
