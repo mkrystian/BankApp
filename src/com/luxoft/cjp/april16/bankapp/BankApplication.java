@@ -22,11 +22,11 @@ class BankApplication {
     public static void initialize() {
 
         //bank.addClientRegistrationListener(new PrintClientListener());
-        clients[0] = new Client("Adam Nowak", Gender.MALE, 2500);
-        clients[1] = new Client("Jan Kowalski", Gender.MALE);
-        clients[2] = new Client("Joanna Szeliga", Gender.FEMALE, 4000);
-        clients[3] = new Client("Piotr Baltroczyk", Gender.MALE);
-        clients[4] = new Client("Piaty Klient", Gender.FEMALE);
+        clients[0] = new Client("Adam Nowak", Gender.MALE, "78021298512", 2500);
+        clients[1] = new Client("Jan Kowalski", Gender.MALE, "78041298513");
+        clients[2] = new Client("Joanna Szeliga", Gender.FEMALE, "90121398512", 4000);
+        clients[3] = new Client("Piotr Baltroczyk", Gender.MALE, "92121391212");
+        clients[4] = new Client("Piaty Klient", Gender.FEMALE, "89121398213");
 
 
         bankService.addClient(bank, clients[3]);

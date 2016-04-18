@@ -13,20 +13,23 @@ import java.util.List;
 public class Client implements Report {
 
     private final List<Account> accounts = new ArrayList<>();
+    private String pesel;
     private String name;
     private Gender gender;
     private Account activeAccount;
     private float initialOverdraft = 0;
 
 
-    public Client(String name, Gender gender) {
+    public Client(String name, Gender gender, String pesel) {
         this.name = name;
         this.gender = gender;
+        this.pesel = pesel;
     }
 
-    public Client(String name, Gender gender, float initialOverdraft) {
+    public Client(String name, Gender gender, String pesel, float initialOverdraft) {
         this.name = name;
         this.gender = gender;
+        this.pesel = pesel;
         this.initialOverdraft = initialOverdraft;
     }
 
@@ -70,6 +73,14 @@ public class Client implements Report {
         System.out.println("------------------------------------------------------------------");
         accounts.forEach(Account::printReport);
         System.out.println("------------------------------------------------------------------");
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        //TODO: add to string method
+
+        return output.toString();
     }
 
     public void addAccount(Account account) {
