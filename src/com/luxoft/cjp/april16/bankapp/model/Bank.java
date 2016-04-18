@@ -4,6 +4,7 @@ import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,11 @@ import java.util.List;
  */
 public class Bank implements Report {
 
+    private static int autoincrement = 0;
     private final List<Client> clients = new ArrayList<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
+    private int id = ++autoincrement;
+    private String name;
 
     {
         clientRegistrationListeners.add(new ClientRegistrationListener() {
@@ -29,6 +33,32 @@ public class Bank implements Report {
                 System.out.println(output);
             }
         });
+    }
+
+    public Bank(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bank)) return false;
+
+        Bank bank = (Bank) o;
+
+        return id == bank.id && name.equals(bank.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        return result;
     }
 
     @Override
@@ -62,9 +92,10 @@ public class Bank implements Report {
         clientRegistrationListeners.remove(clientRegistrationListener);
     }
 
-    /*public List<Client> getClients(){
+    public List<Client> getClients() {
+        Collections.sort(clients);
         return Collections.unmodifiableList(clients);
-    }*/
+    }
 
     /**
      * Created by KMajewski on 2016-04-13.

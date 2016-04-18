@@ -1,5 +1,7 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
+import java.math.BigDecimal;
+
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
@@ -26,12 +28,12 @@ public abstract class AbstractAccount implements Account {
 
     @Override
     public void deposit(float x) {
-        setBalance(balance + x );
+        setBalance(balance + x);
     }
 
     @Override
     public void printReport() {
-        System.out.println( "Balance: " + getBalance() );
+        System.out.println("Balance: " + getBalance());
     }
 
     @Override
@@ -54,4 +56,16 @@ public abstract class AbstractAccount implements Account {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public BigDecimal decimalValue() {
+        return new BigDecimal(Math.round(balance));
+    }
+
+    @Override
+    public String toString() {
+        return id + "|" + balance;
+    }
+
+
 }

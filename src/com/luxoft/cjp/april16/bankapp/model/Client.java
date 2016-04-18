@@ -10,7 +10,7 @@ import java.util.List;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-public class Client implements Report {
+public class Client implements Report, Comparable {
 
     private static int autoincrement = 0;
     private final List<Account> accounts = new ArrayList<>();
@@ -79,10 +79,7 @@ public class Client implements Report {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
-        //TODO: add to string method
-
-        return output.toString();
+        return String.valueOf(id) + "|" + name + "|" + gender.getName() + "|" + pesel + "|";
     }
 
     public void addAccount(Account account) {
@@ -119,5 +116,12 @@ public class Client implements Report {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+
+        Client object2 = (Client) o;
+        return id - object2.getId();
     }
 }

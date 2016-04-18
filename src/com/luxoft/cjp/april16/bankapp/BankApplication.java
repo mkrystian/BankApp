@@ -8,7 +8,7 @@ import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 class BankApplication {
 
     private static final BankService bankService = new BankServiceImpl();
-    private static final Bank bank = new Bank();
+    private static final Bank bank = new Bank("MyBank");
     private static Client[] clients = new Client[5];
     private static Account[] accounts = new Account[10];
 

@@ -40,4 +40,9 @@ public class CheckingAccount extends AbstractAccount {
         super.printReport();
         System.out.println("Overdraft: " + overdraft);
     }
+
+    @Override
+    public String toString() {
+        return "Checking account|" + super.toString() + "|" + overdraft;
+    }
 }
