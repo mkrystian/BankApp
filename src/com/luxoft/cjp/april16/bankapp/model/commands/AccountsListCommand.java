@@ -9,17 +9,17 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class AccountsListCommand implements Command {
+public class AccountsListCommand extends Command {
 
-    private Command commands[] = { //new SetActiveAccount(),
-            //new SetActiveAccount(),
-            //new AddAccountCommand(),
-            //new RemoveAccountCommand(),
-            new BackCommand()
+    public AccountsListCommand() {
+        //super.addCommand( new SetActiveAccount());
+        //super.addCommand( new AddAccountCommand());
+        //super.addCommand( new RemoveAccountCommand());
+        super.addCommand(new BackCommand());
 
-    };
+    }
 
-    private Scanner scanner = new Scanner(System.in);
+
 
     @Override
     public void execute() {
@@ -43,28 +43,7 @@ public class AccountsListCommand implements Command {
         }
 
         int command;
-        while (!BankCommander.back) {
-            System.out.println("-----------------------------------------------------------------");
-            BankCommander.back = false;
-            for (int i = 0; i < commands.length; i++) { // show menu2
-                System.out.print(i + ") ");
-                commands[i].printCommandInfo();
-            }
-            //int command =
-            String commandString = scanner.nextLine();
-            if (commandString.trim().matches("^[0-9]+$")) {
-                command = Integer.parseInt(commandString);
-                if (command < commands.length) {
-                    commands[command].execute();
-                } else {
-                    System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-                }
-            } else {
-                System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-            }
-
-
-        }
+        menu();
 
 
     }

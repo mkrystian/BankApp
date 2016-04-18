@@ -6,7 +6,7 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class TransferCommand implements Command {
+public class TransferCommand extends Command {
 
     private Scanner scanner = new Scanner(System.in);
 

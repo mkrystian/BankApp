@@ -22,23 +22,12 @@ public class CheckingAccountTest {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testCheckingAccountIllegalArgumentException() throws Exception {
-        try {
             new CheckingAccount(-200, 1000);
-            Assert.fail("Exception  IllegalArgumentException expected");
-        } catch (IllegalArgumentException ignored) {
-        }
-        try {
             new CheckingAccount(400, -1000);
-            Assert.fail("Exception  IllegalArgumentException expected");
-        } catch (IllegalArgumentException ignored) {
-        }
-        try {
             new CheckingAccount(-200, -1000);
-            Assert.fail("Exception  IllegalArgumentException expected");
-        } catch (IllegalArgumentException ignored) {
-        }
+
 
     }
 

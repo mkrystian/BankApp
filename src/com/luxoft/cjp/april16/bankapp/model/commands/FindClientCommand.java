@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class FindClientCommand implements Command {
+public class FindClientCommand extends Command {
     private Scanner scanner = new Scanner(System.in);
 
     @Override

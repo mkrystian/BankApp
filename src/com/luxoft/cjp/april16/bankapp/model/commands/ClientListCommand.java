@@ -5,17 +5,17 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 
 import java.util.Scanner;
 
-public class ClientListCommand implements Command {
+public class ClientListCommand extends Command {
 
     private Scanner scanner = new Scanner(System.in);
 
-    private Command commands[] = {new SetCurrentClientCommand(),
-            new FindClientCommand(),
-            new AddClientCommand(),
-            new RemoveClientCommand(),
-            new BackCommand()
-
-    };
+    public ClientListCommand() {
+        super.addCommand(new FindClientCommand());
+        super.addCommand(new SetCurrentClientCommand());
+        super.addCommand(new AddClientCommand());
+        super.addCommand(new RemoveClientCommand());
+        super.addCommand(new BackCommand());
+    }
 
     @Override
     public void execute() {
@@ -29,29 +29,8 @@ public class ClientListCommand implements Command {
         for (Client val : BankCommander.bankService.getClients(BankCommander.currentBank)) {
             System.out.println(val.toString());
         }
-        int command;
-        while (!BankCommander.back) {
-            System.out.println("-----------------------------------------------------------------");
-            BankCommander.back = false;
-            for (int i = 0; i < commands.length; i++) { // show menu2
-                System.out.print(i + ") ");
-                commands[i].printCommandInfo();
-            }
-            //int command =
-            String commandString = scanner.nextLine();
-            if (commandString.trim().matches("^[0-9]+$")) {
-                command = Integer.parseInt(commandString);
-                if (command < commands.length) {
-                    commands[command].execute();
-                } else {
-                    System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-                }
-            } else {
-                System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-            }
 
-
-        }
+        menu();
 
     }
 

@@ -10,7 +10,7 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class AddClientCommand implements Command {
+public class AddClientCommand extends Command {
 
     private Scanner scanner = new Scanner(System.in);
 

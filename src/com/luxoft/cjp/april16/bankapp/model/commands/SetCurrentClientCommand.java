@@ -5,7 +5,7 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 
 import java.util.Scanner;
 
-public class SetCurrentClientCommand implements Command {
+public class SetCurrentClientCommand extends Command {
     private Scanner scanner = new Scanner(System.in);
 
     @Override

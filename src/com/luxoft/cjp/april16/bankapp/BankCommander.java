@@ -17,26 +17,12 @@ public class BankCommander {
     static Command[] commands = {
 
 
-            new ClientListCommand(), // 0
-            new AccountsListCommand(), // 1
-            new WithdrawCommand(), // 2
-            new DepositCommand(), // 3
-            new TransferCommand(), // 4
-            new AddClientCommand(), // 5
-            new Command() { // 6 - Exit Command
-                public void execute() {
-                    System.exit(0);
-                }
 
-                public void printCommandInfo() {
-                    System.out.println("Exit");
-                }
-            }
             // etc.
 
     };
 
-    public static void initialize() {
+    private static void initialize() {
 
         Client[] clients = new Client[5];
         Account[] accounts = new Account[10];
@@ -80,30 +66,10 @@ public class BankCommander {
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         initialize();
-        int command;
-        while (true) {
-            back = false;
-            System.out.println("-----------------------------------------------------------------");
-            System.out.println("Main menu:");
-            for (int i = 0; i < commands.length; i++) { // show menu2
-                System.out.print(i + ") ");
-                commands[i].printCommandInfo();
-            }
-
-            String commandString = scanner.nextLine();
-            if (commandString.trim().matches("^[0-9]+$")) {
-                command = Integer.parseInt(commandString);
-                if (command < commands.length) {
-                    commands[command].execute();
-                } else {
-                    System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-                }
-            } else {
-                System.out.println("Please choose number from range [ 0 - " + commands.length + "]");
-            }
 
 
-        }
+        new MainMenuCommand().execute();
+
     }
 }
 
