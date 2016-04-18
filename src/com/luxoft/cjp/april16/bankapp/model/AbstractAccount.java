@@ -6,6 +6,8 @@ package com.luxoft.cjp.april16.bankapp.model;
  */
 public abstract class AbstractAccount implements Account {
 
+    private static int autoincrement = 0;
+    private int id = ++autoincrement;
     private float balance;
 
     public AbstractAccount(float balance) {
@@ -30,5 +32,26 @@ public abstract class AbstractAccount implements Account {
     @Override
     public void printReport() {
         System.out.println( "Balance: " + getBalance() );
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractAccount)) return false;
+
+        AbstractAccount that = (AbstractAccount) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

@@ -12,7 +12,9 @@ import java.util.List;
  */
 public class Client implements Report {
 
+    private static int autoincrement = 0;
     private final List<Account> accounts = new ArrayList<>();
+    private int id = ++autoincrement;
     private String pesel;
     private String name;
     private Gender gender;
@@ -97,5 +99,25 @@ public class Client implements Report {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+
+        Client client = (Client) o;
+
+        return pesel.equals(client.pesel);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return pesel.hashCode();
+    }
+
+    public int getId() {
+        return id;
     }
 }
