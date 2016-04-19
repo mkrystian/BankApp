@@ -2,9 +2,9 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Bank Application for CJP
@@ -13,13 +13,14 @@ import java.util.List;
 public class Client implements Report, Comparable {
 
     private static int autoincrement = 0;
-    private final List<Account> accounts = new ArrayList<>();
+    private final Set<Account> accounts = new HashSet<>();
     private int id = ++autoincrement;
     private String pesel;
     private String name;
     private Gender gender;
     private Account activeAccount;
     private float initialOverdraft = 0;
+    private String email;
 
 
     public Client(String name, Gender gender, String pesel) {
@@ -63,8 +64,8 @@ public class Client implements Report, Comparable {
         return activeAccount.getBalance();
     }
 
-    public List<Account> getAccounts() {
-        return Collections.unmodifiableList(accounts);
+    public Set<Account> getAccounts() {
+        return Collections.unmodifiableSet(accounts);
     }
 
     @Override
@@ -120,8 +121,15 @@ public class Client implements Report, Comparable {
 
     @Override
     public int compareTo(Object o) {
-
         Client object2 = (Client) o;
         return id - object2.getId();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

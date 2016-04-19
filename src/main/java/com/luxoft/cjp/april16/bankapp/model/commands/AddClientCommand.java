@@ -52,7 +52,17 @@ public class AddClientCommand implements Command {
         if (inboundValue.toLowerCase().equals("m")) gender = Gender.MALE;
         else gender = Gender.FEMALE;
 
+        System.out.print("Client's email address: ");
+        inboundValue = scanner.nextLine();
+        if (!inboundValue.matches("^[A-Za-z\\.-0-9]{2,}@[A-Za-z\\.-0-9]{2,}\\.[A-Za-z]{2,3}$")) {
+            System.out.println("Incorrect mail address - interrupted");
+            return;
+        }
+
+        String email = inboundValue;
+
         Client newClient = new Client(name, gender, pesel);
+        newClient.setEmail(email);
         BankCommander.bankService.addClient(BankCommander.currentBank, newClient);
         System.out.println("New client added: ");
         System.out.println(newClient.toString());

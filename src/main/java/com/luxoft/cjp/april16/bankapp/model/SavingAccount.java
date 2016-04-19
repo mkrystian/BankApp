@@ -29,6 +29,6 @@ public class SavingAccount extends AbstractAccount {
 
     @Override
     public String toString() {
-        return "Saving account|" + super.toString();
+        return super.toString() + "|Saving account";
     }
 }

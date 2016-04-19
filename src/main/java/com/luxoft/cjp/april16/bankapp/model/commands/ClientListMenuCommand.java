@@ -3,10 +3,10 @@ package com.luxoft.cjp.april16.bankapp.model.commands;
 import com.luxoft.cjp.april16.bankapp.BankCommander;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 
-public class ClientListCommand extends AbstractMenuCommand {
+public class ClientListMenuCommand extends AbstractMenuCommand {
 
 
-    public ClientListCommand() {
+    public ClientListMenuCommand() {
         super.addCommand(new FindClientCommand());
         super.addCommand(new SetCurrentClientCommand());
         super.addCommand(new AddClientCommand());
@@ -24,6 +24,7 @@ public class ClientListCommand extends AbstractMenuCommand {
 
         //Collections.sort( bankService.getClients(currentBank));
         for (Client val : BankCommander.bankService.getClients(BankCommander.currentBank)) {
+            if (val == BankCommander.currentClient) System.out.print("(active)");
             System.out.println(val.toString());
         }
 

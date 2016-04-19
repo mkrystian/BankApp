@@ -43,6 +43,6 @@ public class CheckingAccount extends AbstractAccount {
 
     @Override
     public String toString() {
-        return "Checking account|" + super.toString() + "|" + overdraft;
+        return super.toString() + "|Checking account" + "|" + overdraft;
     }
 }

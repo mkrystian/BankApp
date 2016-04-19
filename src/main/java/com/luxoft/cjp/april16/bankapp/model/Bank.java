@@ -3,10 +3,7 @@ package com.luxoft.cjp.april16.bankapp.model;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Bank Application for CJP
@@ -15,7 +12,7 @@ import java.util.List;
 public class Bank implements Report {
 
     private static int autoincrement = 0;
-    private final List<Client> clients = new ArrayList<>();
+    private final Set<Client> clients = new HashSet<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
     private int id = ++autoincrement;
     private String name;
@@ -93,9 +90,8 @@ public class Bank implements Report {
         clientRegistrationListeners.remove(clientRegistrationListener);
     }
 
-    public List<Client> getClients() {
-        Collections.sort(clients);
-        return Collections.unmodifiableList(clients);
+    public Set<Client> getClients() {
+        return Collections.unmodifiableSet(clients);
     }
 
     /**

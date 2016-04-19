@@ -18,6 +18,8 @@ public interface Account extends Report {
 
     void withdraw(float x) throws NotEnoughFoundsException;
 
+    void transferTo(Account account, float amount) throws NotEnoughFoundsException;
+
     BigDecimal decimalValue();
 
     String toString();

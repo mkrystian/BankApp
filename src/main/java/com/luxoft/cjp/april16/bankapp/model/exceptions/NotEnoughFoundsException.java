@@ -33,4 +33,9 @@ public class NotEnoughFoundsException extends BankException {
     public Account getAccount() {
         return account;
     }
+
+    @Override
+    public String getMessage() {
+        return "Not enough founds!";
+    }
 }

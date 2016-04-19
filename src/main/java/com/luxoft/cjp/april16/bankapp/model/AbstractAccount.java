@@ -1,5 +1,7 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
+import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
+
 import java.math.BigDecimal;
 
 /**
@@ -67,5 +69,15 @@ public abstract class AbstractAccount implements Account {
         return id + "|" + balance;
     }
 
+    @Override
+    public void transferTo(Account account, float amount) throws NotEnoughFoundsException {
+        try {
+            this.withdraw(amount);
+            // Deposit won't be executed if exception will be thrown by withdraw
+            account.deposit(amount);
+        } catch (NotEnoughFoundsException e) {
+            throw e;
+        }
+    }
 
 }

@@ -1,12 +1,9 @@
 package com.luxoft.cjp.april16.bankapp;
 
 import com.luxoft.cjp.april16.bankapp.model.*;
-import com.luxoft.cjp.april16.bankapp.model.commands.AbstractMenuCommand;
 import com.luxoft.cjp.april16.bankapp.model.commands.MainMenuCommand;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
-
-import java.util.Scanner;
 
 
 public class BankCommander {
@@ -15,12 +12,6 @@ public class BankCommander {
     public static Client currentClient;
 
     public static boolean back = false;
-    static AbstractMenuCommand[] abstractMenuCommands = {
-
-
-            // etc.
-
-    };
 
     private static void initialize() {
 
@@ -64,10 +55,8 @@ public class BankCommander {
     }
 
     public static void main(String args[]) {
-        Scanner scanner = new Scanner(System.in);
+
         initialize();
-
-
         new MainMenuCommand().execute();
 
     }

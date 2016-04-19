@@ -33,7 +33,7 @@ public class WithdrawCommand extends AbstractMenuCommand {
         float amount;
         String inboundValue = scanner.nextLine();
 
-        if (!inboundValue.matches("^[0-9]+$") || !inboundValue.matches("^[0-9]+.[0-9]{1,2}$")) {
+        if (!inboundValue.matches("^[0-9]+$") && !inboundValue.matches("^[0-9]+\\.[0-9]{1,2}$")) {
             System.out.println(" Incorrect amount - interrupted");
             return;
         }

@@ -7,10 +7,10 @@ import com.luxoft.cjp.april16.bankapp.model.Account;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class AccountsListCommand extends AbstractMenuCommand {
+public class AccountsListMenuCommand extends AbstractMenuCommand {
 
-    public AccountsListCommand() {
-        //super.addCommand( new SetActiveAccount());
+    public AccountsListMenuCommand() {
+        super.addCommand(new SetActiveAccountCommand());
         //super.addCommand( new AddAccountCommand());
         //super.addCommand( new RemoveAccountCommand());
         super.addCommand(new BackCommand());
@@ -32,14 +32,14 @@ public class AccountsListCommand extends AbstractMenuCommand {
         if (BankCommander.currentClient.getAccounts().isEmpty()) {
             System.out.println("No created accounts for current client");
         } else {
-            System.out.println("ACCOUNT TYPE|ID|BALANCE|OVERDRAFT");
+            System.out.println("ID|BALANCE|ACCOUNT TYPE|OVERDRAFT");
         }
 
-        for (Account val : BankCommander.currentClient.getAccounts()) {
+        for (Account val : BankCommander.bankService.getAccounts(BankCommander.currentClient)) {
+            if (val == BankCommander.currentClient.getActiveAccount()) System.out.print("(active)");
             System.out.println(val.toString());
         }
 
-        int command;
         menu();
 
 

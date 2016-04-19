@@ -11,7 +11,6 @@ public abstract class AbstractMenuCommand implements Command {
 
     private Scanner scanner = new Scanner(System.in);
     private List<Command> abstractMenuCommands = new ArrayList<>();
-    private int command;
 
 
     void addCommand(Command command) {
@@ -33,7 +32,7 @@ public abstract class AbstractMenuCommand implements Command {
             //int command =
             String commandString = scanner.nextLine();
             if (commandString.trim().matches("^[0-9]+$")) {
-                command = Integer.parseInt(commandString);
+                int command = Integer.parseInt(commandString);
                 if (command < abstractMenuCommands.size()) {
                     abstractMenuCommands.get(command).execute();
                 } else {
