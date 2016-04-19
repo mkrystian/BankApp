@@ -19,7 +19,7 @@ public class ClientListMenuCommand extends AbstractMenuCommand {
 
         System.out.println("-----------------------------------------------------------------");
         printCommandInfo();
-        System.out.println("ID|NAME|GENDER|PESEL");
+        System.out.println("ID|NAME|GENDER|PESEL|INITIAL OVERDRAFT|EMAIL|CITY");
         //Iterator<Client> iterator = bankService.getClients(currentBank).iterator();
 
         //Collections.sort( bankService.getClients(currentBank));

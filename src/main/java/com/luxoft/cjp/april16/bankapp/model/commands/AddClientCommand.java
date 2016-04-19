@@ -61,8 +61,20 @@ public class AddClientCommand implements Command {
 
         String email = inboundValue;
 
-        Client newClient = new Client(name, gender, pesel);
-        newClient.setEmail(email);
+        System.out.print("Client initial overdraft: ");
+        inboundValue = scanner.nextLine();
+        if (!inboundValue.matches("^[0-9]+$") || !inboundValue.matches("^[0-9]+\\.[0-9]{1,2}$")) {
+            System.out.println(" Incorrect amount - interrupted");
+            return;
+        }
+
+        float initialOverdraft = Float.parseFloat(inboundValue);
+
+        System.out.print("City: ");
+        String city = scanner.nextLine();
+
+
+        Client newClient = new Client(name, gender, pesel, initialOverdraft, email, city);
         BankCommander.bankService.addClient(BankCommander.currentBank, newClient);
         System.out.println("New client added: ");
         System.out.println(newClient.toString());

@@ -5,7 +5,7 @@ import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 
-class BankApplication {
+public class BankApplication {
 
     private static final BankService bankService = new BankServiceImpl();
     private static final Bank bank = new Bank("MyBank");
@@ -13,23 +13,23 @@ class BankApplication {
     private static Account[] accounts = new Account[10];
 
     public static void main(String[] args) {
-        initialize();
+        initialize(bank, bankService);
         printBankReport();
         modifyBank();
         printBankReport();
     }
 
-    public static void initialize() {
+    public static void initialize(Bank bank, BankService bankService) {
 
         //bank.addClientRegistrationListener(new PrintClientListener());
-        clients[0] = new Client("Adam Nowak", Gender.MALE, "78021298512", 2500);
-        clients[1] = new Client("Jan Kowalski", Gender.MALE, "78041298513");
-        clients[2] = new Client("Joanna Szeliga", Gender.FEMALE, "90121398512", 4000);
-        clients[3] = new Client("Piotr Baltroczyk", Gender.MALE, "92121391212");
-        clients[4] = new Client("Piaty Klient", Gender.FEMALE, "89121398213");
+        clients[0] = new Client("Tom Cruise", Gender.MALE, "78021298512", 2500, "mymail@abc.com", "New York");
+        clients[1] = new Client("Elton John", Gender.MALE, "78041298513", 0, "nomail@rocks.com", "Washington");
+        clients[2] = new Client("Carla Willis", Gender.FEMALE, "90121398512", 4000, "jana@abc.com", "New Jersey");
+        clients[3] = new Client("Leonardo Dicaprio", Gender.MALE, "92121391212", 1000, "balti@abc.com", "London");
+        clients[4] = new Client("Jena Philips", Gender.FEMALE, "89121398213", 500, "mailtance@abc.com", "London");
 
 
-        bankService.addClient(bank, clients[3]);
+        //bankService.addClient(bank, clients[3]);
         for (Client val : clients) bankService.addClient(bank, val);
 
         accounts[0] = new SavingAccount(2000);

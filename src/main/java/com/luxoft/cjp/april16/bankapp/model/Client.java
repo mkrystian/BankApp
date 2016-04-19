@@ -1,6 +1,7 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
+import com.sun.istack.internal.NotNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,9 +22,10 @@ public class Client implements Report, Comparable {
     private Account activeAccount;
     private float initialOverdraft = 0;
     private String email;
+    private String city;
 
 
-    public Client(String name, Gender gender, String pesel) {
+    /*public Client(String name, Gender gender, String pesel) {
         this.name = name;
         this.gender = gender;
         this.pesel = pesel;
@@ -34,7 +36,17 @@ public class Client implements Report, Comparable {
         this.gender = gender;
         this.pesel = pesel;
         this.initialOverdraft = initialOverdraft;
+    }*/
+
+    public Client(String name, Gender gender, String pesel, float initialOverdraft, String email, String city) {
+        this.pesel = pesel;
+        this.name = name;
+        this.gender = gender;
+        this.initialOverdraft = initialOverdraft;
+        this.email = email;
+        this.city = city;
     }
+
 
     public String getName() {
         return name;
@@ -80,7 +92,10 @@ public class Client implements Report, Comparable {
 
     @Override
     public String toString() {
-        return String.valueOf(id) + "|" + name + "|" + gender.getName() + "|" + pesel + "|";
+        return String.valueOf(id) + "|" + name + "|"
+                + gender.getName() + "|" + pesel + "|"
+                + initialOverdraft + "|" + email + "|"
+                + city;
     }
 
     public void addAccount(Account account) {
@@ -119,7 +134,7 @@ public class Client implements Report, Comparable {
         return id;
     }
 
-    @Override
+    @NotNull
     public int compareTo(Object o) {
         Client object2 = (Client) o;
         return id - object2.getId();
@@ -131,5 +146,13 @@ public class Client implements Report, Comparable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

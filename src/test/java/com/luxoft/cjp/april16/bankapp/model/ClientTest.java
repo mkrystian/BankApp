@@ -15,9 +15,9 @@ public class ClientTest {
     public void hashCodeTest() {
 
         Client client1, client2, client3;
-        client1 = new Client("Jim Carry", Gender.FEMALE, "91023910293");
-        client2 = new Client("Tom Cruise", Gender.FEMALE, "78124201478");
-        client3 = new Client("Jana Tiffany", Gender.FEMALE, "78124201478");
+        client1 = new Client("Jim Carry", Gender.FEMALE, "91023910293", 0, "mail@bc.com", "New York");
+        client2 = new Client("Tom Cruise", Gender.FEMALE, "78124201478", 0, "mail@bc.com", "New York");
+        client3 = new Client("Jana Tiffany", Gender.FEMALE, "78124201478", 0, "mail@bc.com", "New York");
 
         Assert.assertThat(client1.hashCode(), not(client2.hashCode()));
         Assert.assertEquals(client2.hashCode(), client3.hashCode());
@@ -29,9 +29,9 @@ public class ClientTest {
     public void equalsTest() {
 
         Client client1, client2, client3;
-        client1 = new Client("Jim Carry", Gender.FEMALE, "91023910293");
-        client2 = new Client("Tom Cruise", Gender.FEMALE, "78124201478");
-        client3 = new Client("Jana Tiffany", Gender.FEMALE, "78124201478");
+        client1 = new Client("Jim Carry", Gender.FEMALE, "91023910293", 0, "mail@bc.com", "New York");
+        client2 = new Client("Tom Cruise", Gender.FEMALE, "78124201478", 0, "mail@bc.com", "New York");
+        client3 = new Client("Jana Tiffany", Gender.FEMALE, "78124201478", 0, "mail@bc.com", "New York");
 
         Assert.assertEquals(client1.equals(client2), false);
         Assert.assertEquals(client2.equals(client3), true);
