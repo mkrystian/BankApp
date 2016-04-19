@@ -1,7 +1,7 @@
-package com.luxoft.cjp.april16.bankapp.model.model.commands;
+package com.luxoft.cjp.april16.bankapp.model.commands;
 
 import com.luxoft.cjp.april16.bankapp.BankCommander;
-import com.luxoft.cjp.april16.bankapp.model.model.Client;
+import com.luxoft.cjp.april16.bankapp.model.Client;
 
 public class ClientListCommand extends AbstractMenuCommand {
 

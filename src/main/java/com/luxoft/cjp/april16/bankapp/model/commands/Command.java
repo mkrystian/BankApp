@@ -1,4 +1,4 @@
-package com.luxoft.cjp.april16.bankapp.model.model.commands;
+package com.luxoft.cjp.april16.bankapp.model.commands;
 
 /**
  * BankApp for CJP

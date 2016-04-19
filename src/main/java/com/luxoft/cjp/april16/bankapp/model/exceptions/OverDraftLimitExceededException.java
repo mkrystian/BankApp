@@ -1,6 +1,6 @@
-package com.luxoft.cjp.april16.bankapp.model.model.exceptions;
+package com.luxoft.cjp.april16.bankapp.model.exceptions;
 
-import com.luxoft.cjp.april16.bankapp.model.model.Account;
+import com.luxoft.cjp.april16.bankapp.model.Account;
 
 /**
  * Bank Application for CJP

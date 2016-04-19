@@ -1,8 +1,8 @@
 package com.luxoft.cjp.april16.bankapp;
 
-import com.luxoft.cjp.april16.bankapp.model.model.*;
-import com.luxoft.cjp.april16.bankapp.model.model.commands.AbstractMenuCommand;
-import com.luxoft.cjp.april16.bankapp.model.model.commands.MainMenuCommand;
+import com.luxoft.cjp.april16.bankapp.model.*;
+import com.luxoft.cjp.april16.bankapp.model.commands.AbstractMenuCommand;
+import com.luxoft.cjp.april16.bankapp.model.commands.MainMenuCommand;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 

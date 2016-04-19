@@ -1,6 +1,7 @@
-package com.luxoft.cjp.april16.bankapp.model.model.commands;
+package com.luxoft.cjp.april16.bankapp.model.commands;
 
 import com.luxoft.cjp.april16.bankapp.BankCommander;
+import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class DepositCommand extends AbstractMenuCommand {
+public class WithdrawCommand extends AbstractMenuCommand {
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -27,7 +28,7 @@ public class DepositCommand extends AbstractMenuCommand {
             return;
         }
 
-        System.out.println("Amount of cash to deposit:");
+        System.out.println("Amount of cash to withdraw:");
 
         float amount;
         String inboundValue = scanner.nextLine();
@@ -39,11 +40,16 @@ public class DepositCommand extends AbstractMenuCommand {
 
         amount = Float.parseFloat(inboundValue);
 
-        BankCommander.currentClient.getActiveAccount().deposit(amount);
+        try {
+            BankCommander.currentClient.getActiveAccount().withdraw(amount);
+        } catch (NotEnoughFoundsException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
     public void printCommandInfo() {
-        System.out.println("Deposit money on current account");
+        System.out.println("Withdraw money from current account");
     }
 }

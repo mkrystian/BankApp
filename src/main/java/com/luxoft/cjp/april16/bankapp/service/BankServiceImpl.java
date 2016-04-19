@@ -1,9 +1,9 @@
 package com.luxoft.cjp.april16.bankapp.service;
 
-import com.luxoft.cjp.april16.bankapp.model.model.Account;
-import com.luxoft.cjp.april16.bankapp.model.model.Bank;
-import com.luxoft.cjp.april16.bankapp.model.model.Client;
-import com.luxoft.cjp.april16.bankapp.model.model.exceptions.ClientExistsException;
+import com.luxoft.cjp.april16.bankapp.model.Account;
+import com.luxoft.cjp.april16.bankapp.model.Bank;
+import com.luxoft.cjp.april16.bankapp.model.Client;
+import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 
 import java.util.List;
 

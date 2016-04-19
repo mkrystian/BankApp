@@ -1,7 +1,7 @@
 package com.luxoft.cjp.april16.bankapp;
 
-import com.luxoft.cjp.april16.bankapp.model.model.*;
-import com.luxoft.cjp.april16.bankapp.model.model.exceptions.NotEnoughFoundsException;
+import com.luxoft.cjp.april16.bankapp.model.*;
+import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 

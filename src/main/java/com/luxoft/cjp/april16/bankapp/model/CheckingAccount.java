@@ -1,7 +1,7 @@
-package com.luxoft.cjp.april16.bankapp.model.model;
+package com.luxoft.cjp.april16.bankapp.model;
 
-import com.luxoft.cjp.april16.bankapp.model.model.exceptions.NotEnoughFoundsException;
-import com.luxoft.cjp.april16.bankapp.model.model.exceptions.OverDraftLimitExceededException;
+import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
+import com.luxoft.cjp.april16.bankapp.model.exceptions.OverDraftLimitExceededException;
 
 /**
  * Bank Application for CJP
