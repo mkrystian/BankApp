@@ -1,7 +1,7 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
-import com.sun.istack.internal.NotNull;
+
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -134,7 +134,7 @@ public class Client implements Report, Comparable {
         return id;
     }
 
-    @NotNull
+
     public int compareTo(Object o) {
         Client object2 = (Client) o;
         return id - object2.getId();
