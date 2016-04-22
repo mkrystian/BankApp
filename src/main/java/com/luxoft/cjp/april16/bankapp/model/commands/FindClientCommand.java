@@ -5,7 +5,6 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class FindClientCommand extends AbstractMenuCommand {
     private Scanner scanner = new Scanner(System.in);
@@ -16,8 +15,8 @@ public class FindClientCommand extends AbstractMenuCommand {
         printCommandInfo();
         System.out.println("Client name like: ");
         String commandString = scanner.nextLine();
-        List<Client> list = BankCommander.bankService.getClients(BankCommander.currentBank).stream().filter(val -> val.getName().toLowerCase().matches(".*" + commandString.toLowerCase() + ".*")).collect(Collectors.toList());
-
+        //List<Client> list = BankCommander.bankService.getClients(BankCommander.currentBank).stream().filter(val -> val.getName().toLowerCase().matches(".*" + commandString.toLowerCase() + ".*")).collect(Collectors.toList());
+        List<Client> list = BankCommander.bankService.getClientsByName(BankCommander.currentBank, commandString);
         System.out.println("Results:");
         if (list.isEmpty()) System.out.println("No results found");
         for (Client val : list) {

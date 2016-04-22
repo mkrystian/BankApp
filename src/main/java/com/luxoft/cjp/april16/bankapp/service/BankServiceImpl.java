@@ -5,6 +5,9 @@ import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -47,6 +50,18 @@ public class BankServiceImpl implements BankService {
     @Override
     public Set<Client> getClients(Bank bank) {
         return bank.getClients();
+    }
+
+    @Override
+    public List<Client> getClientsByName(Bank bank, String name) {
+        Map<String, List<Client>> map = bank.getClientsMap();
+        List<Client> list = new ArrayList<>();
+
+        map.entrySet().stream().filter(entry -> entry.getKey().toLowerCase().matches(".*" + name.toLowerCase() + ".*")).forEach(entry -> {
+            list.addAll(entry.getValue());
+        });
+
+        return list;
     }
 
 

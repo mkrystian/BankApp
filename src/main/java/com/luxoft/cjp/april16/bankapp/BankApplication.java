@@ -2,6 +2,7 @@ package com.luxoft.cjp.april16.bankapp;
 
 import com.luxoft.cjp.april16.bankapp.model.*;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
+import com.luxoft.cjp.april16.bankapp.service.BankReport;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 
@@ -14,9 +15,17 @@ public class BankApplication {
 
     public static void main(String[] args) {
         initialize(bank, bankService);
+
+        if (args.length > 0 && args[0].equals("report")) {
+            new BankReport().printReport(bank);
+            return;
+        }
+
         printBankReport();
         modifyBank();
         printBankReport();
+
+
     }
 
     public static void initialize(Bank bank, BankService bankService) {

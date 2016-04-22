@@ -14,7 +14,7 @@ import java.util.TreeMap;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-19.
  */
-public class BankReport implements Report {
+public class BankReport {
 
     public int getNumberOfClients(Bank bank) {
         return bank.getClients().size();
@@ -52,8 +52,15 @@ public class BankReport implements Report {
         return map;
     }
 
-    @Override
-    public void printReport() {
+    public void printReport(Bank bank) {
+        System.out.println("Bank Report: \nAccounts number: " +
+                getAccountsNumber(bank) + "\nBank credit sum: " +
+                getBankCreditSum(bank) + "\nNumber of clients in particular cities: ");
 
+        //StringBuilder output = new StringBuilder();
+
+        for (Map.Entry<String, List<Client>> entrySet : getClientsByCity(bank).entrySet()) {
+            System.out.println(entrySet.getKey() + " : " + entrySet.getValue().size());
+        }
     }
 }

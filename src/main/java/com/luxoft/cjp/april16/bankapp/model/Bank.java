@@ -14,6 +14,7 @@ public class Bank implements Report {
     private static int autoincrement = 0;
     private final Set<Client> clients = new HashSet<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
+    private final Map<String, List<Client>> clientsMap = new HashMap<>();
     private int id = ++autoincrement;
     private String name;
 
@@ -30,6 +31,7 @@ public class Bank implements Report {
                 System.out.println(output);
             }
         });
+        clientRegistrationListeners.add(new MapAddListener());
     }
 
     public Bank(String name) {
@@ -94,16 +96,16 @@ public class Bank implements Report {
         return Collections.unmodifiableSet(clients);
     }
 
-    /**
-     * Created by KMajewski on 2016-04-13.
-     */
+    public Map<String, List<Client>> getClientsMap() {
+        return Collections.unmodifiableMap(clientsMap);
+    }
+
+
     public interface ClientRegistrationListener {
         void onClientAdded(Client client);
     }
 
-    /**
-     * Created by KMajewski on 2016-04-13.
-     */
+
     public class EmailNotificationListener implements ClientRegistrationListener {
         @Override
         public void onClientAdded(Client client) {
@@ -126,6 +128,20 @@ public class Bank implements Report {
                     .append(client.getName())
                     .append(" had been created#");
             System.out.println(output);
+        }
+    }
+
+    private class MapAddListener implements ClientRegistrationListener {
+
+        @Override
+        public void onClientAdded(Client client) {
+            if (!clientsMap.containsKey(client.getName())) {
+                List<Client> newList = new ArrayList<>();
+                newList.add(client);
+                clientsMap.put(client.getName(), newList);
+            } else {
+                clientsMap.get(client.getName()).add(client);
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ public class BankCommander {
 
         BankApplication.initialize(currentBank, bankService);
         new MainMenuCommand().execute();
-
     }
 }
 

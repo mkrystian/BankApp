@@ -7,13 +7,13 @@ package com.luxoft.cjp.april16.bankapp.model.commands;
 public class MainMenuCommand extends AbstractMenuCommand {
 
     public MainMenuCommand() {
-        super.addCommand(new ClientListMenuCommand());
-        super.addCommand(new AccountsListMenuCommand());
-        super.addCommand(new WithdrawCommand());
-        super.addCommand(new DepositCommand());
-        super.addCommand(new TransferCommand());
-        super.addCommand(new AddClientCommand());
-        super.addCommand(new Command() {
+        super.addCommand("Clients List", new ClientListMenuCommand());
+        super.addCommand("Accounts list", new AccountsListMenuCommand());
+        super.addCommand("Withdraw money", new WithdrawCommand());
+        super.addCommand("Deposit money", new DepositCommand());
+        super.addCommand("Transfer money from current account", new TransferCommand());
+        super.addCommand("Add client", new AddClientCommand());
+        super.addCommand("Exit", new Command() {
             public void execute() {
                 System.exit(0);
             }

@@ -7,11 +7,11 @@ public class ClientListMenuCommand extends AbstractMenuCommand {
 
 
     public ClientListMenuCommand() {
-        super.addCommand(new FindClientCommand());
-        super.addCommand(new SetCurrentClientCommand());
-        super.addCommand(new AddClientCommand());
-        super.addCommand(new RemoveClientCommand());
-        super.addCommand(new BackCommand());
+        super.addCommand("Find client by name", new FindClientCommand());
+        super.addCommand("Set current client", new SetCurrentClientCommand());
+        super.addCommand("Add client", new AddClientCommand());
+        super.addCommand("Remove client", new RemoveClientCommand());
+        super.addCommand("Back", new BackCommand());
     }
 
     @Override

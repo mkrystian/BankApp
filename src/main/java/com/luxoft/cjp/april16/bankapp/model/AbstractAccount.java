@@ -71,13 +71,8 @@ public abstract class AbstractAccount implements Account {
 
     @Override
     public void transferTo(Account account, float amount) throws NotEnoughFoundsException {
-        try {
             this.withdraw(amount);
-            // Deposit won't be executed if exception will be thrown by withdraw
             account.deposit(amount);
-        } catch (NotEnoughFoundsException e) {
-            throw e;
-        }
     }
 
 }

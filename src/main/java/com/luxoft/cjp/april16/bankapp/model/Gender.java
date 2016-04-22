@@ -6,7 +6,7 @@ package com.luxoft.cjp.april16.bankapp.model;
  */
 public enum Gender {
     MALE("Mr. ", "male"),
-    FEMALE("Mrs. ", "famale");
+    FEMALE("Mrs. ", "female");
 
     private String salutation;
     private String name;
