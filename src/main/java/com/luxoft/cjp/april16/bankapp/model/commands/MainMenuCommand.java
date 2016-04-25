@@ -7,17 +7,16 @@ package com.luxoft.cjp.april16.bankapp.model.commands;
 public class MainMenuCommand extends AbstractMenuCommand {
 
     public MainMenuCommand() {
-        super.addCommand("Clients List", new ClientListMenuCommand());
-        super.addCommand("Accounts list", new AccountsListMenuCommand());
-        super.addCommand("Withdraw money", new WithdrawCommand());
-        super.addCommand("Deposit money", new DepositCommand());
-        super.addCommand("Transfer money from current account", new TransferCommand());
-        super.addCommand("Add client", new AddClientCommand());
-        super.addCommand("Exit", new Command() {
+        super.registerCommand(0, new ClientListMenuCommand(this));
+        super.registerCommand(1, new AccountsListMenuCommand(this));
+        super.registerCommand(2, new WithdrawCommand());
+        super.registerCommand(3, new DepositCommand());
+        super.registerCommand(4, new TransferCommand());
+        super.registerCommand(5, new AddClientCommand());
+        super.registerCommand(6, new Command() {
             public void execute() {
                 System.exit(0);
             }
-
             public void printCommandInfo() {
                 System.out.println("Exit");
             }
@@ -28,7 +27,7 @@ public class MainMenuCommand extends AbstractMenuCommand {
 
     @Override
     public void execute() {
-        while (true) menu();
+        menu();
 
     }
 

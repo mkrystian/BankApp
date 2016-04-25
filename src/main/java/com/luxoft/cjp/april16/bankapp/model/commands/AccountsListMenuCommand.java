@@ -9,11 +9,9 @@ import com.luxoft.cjp.april16.bankapp.model.Account;
  */
 public class AccountsListMenuCommand extends AbstractMenuCommand {
 
-    public AccountsListMenuCommand() {
-        super.addCommand("Set active account", new SetActiveAccountCommand());
-        //super.addCommand( new AddAccountCommand());
-        //super.addCommand( new RemoveAccountCommand());
-        super.addCommand("Back", new BackCommand());
+    public AccountsListMenuCommand(MainMenuCommand mainMenuCommand) {
+        super.registerCommand(0, new SetActiveAccountCommand());
+        super.registerCommand(1, mainMenuCommand);
 
     }
 

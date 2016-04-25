@@ -6,12 +6,12 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 public class ClientListMenuCommand extends AbstractMenuCommand {
 
 
-    public ClientListMenuCommand() {
-        super.addCommand("Find client by name", new FindClientCommand());
-        super.addCommand("Set current client", new SetCurrentClientCommand());
-        super.addCommand("Add client", new AddClientCommand());
-        super.addCommand("Remove client", new RemoveClientCommand());
-        super.addCommand("Back", new BackCommand());
+    public ClientListMenuCommand(MainMenuCommand mainMenuCommand) {
+        super.registerCommand(0, new FindClientCommand());
+        super.registerCommand(1, new SetCurrentClientCommand());
+        super.registerCommand(2, new AddClientCommand());
+        super.registerCommand(3, new RemoveClientCommand());
+        super.registerCommand(4, mainMenuCommand);
     }
 
     @Override
