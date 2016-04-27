@@ -19,6 +19,8 @@ public class BankCommander {
 
     public static void main(String args[]) {
 
+
+        System.out.println(System.getProperty("user.dir"));
         BankApplication.initialize(currentBank, bankService);
         currentCommand = new MainMenuCommand();
         while (true) currentCommand.execute();

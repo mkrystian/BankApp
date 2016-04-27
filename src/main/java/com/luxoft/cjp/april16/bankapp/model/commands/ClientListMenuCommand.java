@@ -20,9 +20,7 @@ public class ClientListMenuCommand extends AbstractMenuCommand {
         System.out.println("-----------------------------------------------------------------");
         printCommandInfo();
         System.out.println("ID|NAME|GENDER|PESEL|INITIAL OVERDRAFT|EMAIL|CITY");
-        //Iterator<Client> iterator = bankService.getClients(currentBank).iterator();
 
-        //Collections.sort( bankService.getClients(currentBank));
         for (Client val : BankCommander.bankService.getClients(BankCommander.currentBank)) {
             if (val == BankCommander.currentClient) System.out.print("(active)");
             System.out.println(val.toString());

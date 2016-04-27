@@ -20,17 +20,13 @@ public class BankApplication {
             new BankReport().printReport(bank);
             return;
         }
-
         printBankReport();
         modifyBank();
         printBankReport();
-
-
     }
 
     public static void initialize(Bank bank, BankService bankService) {
 
-        //bank.addClientRegistrationListener(new PrintClientListener());
         clients[0] = new Client("Tom Cruise", Gender.MALE, "78021298512", 2500, "mymail@abc.com", "New York");
         clients[1] = new Client("Elton John", Gender.MALE, "78041298513", 0, "nomail@rocks.com", "Washington");
         clients[2] = new Client("Carla Willis", Gender.FEMALE, "90121398512", 4000, "jana@abc.com", "New Jersey");
@@ -38,7 +34,6 @@ public class BankApplication {
         clients[4] = new Client("Jena Philips", Gender.FEMALE, "89121398213", 500, "mailtance@abc.com", "London");
 
 
-        //bankService.addClient(bank, clients[3]);
         for (Client val : clients) bankService.addClient(bank, val);
 
         accounts[0] = new SavingAccount(2000);

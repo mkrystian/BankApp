@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class Bank implements Report {
 
+
     private static int autoincrement = 0;
     private final Set<Client> clients = new HashSet<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
@@ -98,6 +99,29 @@ public class Bank implements Report {
 
     public Map<String, List<Client>> getClientsMap() {
         return Collections.unmodifiableMap(clientsMap);
+    }
+
+    public void parseFeed(Map<String, String> feed) {
+        Client client = acquireClient(feed);
+        client.addAccount(AbstractAccount.factoryMethodForFeed(feed));
+    }
+
+    private Client acquireClient(Map<String, String> feed) {
+        Client client = null;
+        for (Client element : clients) {
+            if (element.getPesel().equals(feed.get("pesel"))) {
+                client = element;
+            }
+        }
+        if (client == null) {
+            client = Client.factoryMethodForFeeds(feed);
+            try {
+                this.addClient(client);
+            } catch (ClientExistsException e) {
+                e.printStackTrace();
+            }
+        }
+        return client;
     }
 
 

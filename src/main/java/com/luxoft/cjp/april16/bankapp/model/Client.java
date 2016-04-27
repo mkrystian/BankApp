@@ -2,9 +2,9 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
-
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -23,21 +23,6 @@ public class Client implements Report, Comparable {
     private float initialOverdraft = 0;
     private String email;
     private String city;
-
-
-    /*public Client(String name, Gender gender, String pesel) {
-        this.name = name;
-        this.gender = gender;
-        this.pesel = pesel;
-    }
-
-    public Client(String name, Gender gender, String pesel, float initialOverdraft) {
-        this.name = name;
-        this.gender = gender;
-        this.pesel = pesel;
-        this.initialOverdraft = initialOverdraft;
-    }*/
-
     public Client(String name, Gender gender, String pesel, float initialOverdraft, String email, String city) {
         this.pesel = pesel;
         this.name = name;
@@ -47,6 +32,21 @@ public class Client implements Report, Comparable {
         this.city = city;
     }
 
+    public static Client factoryMethodForFeeds(Map<String, String> feed) {
+
+        String pesel = feed.get("pesel");
+        String name = feed.get("name");
+        String gender = feed.get("gender");
+        String initialOverdraft = feed.get("initialOverdraft");
+        String email = feed.get("email");
+        String city = feed.get("city");
+
+        return new Client(name, Gender.factoryMethod(gender), pesel, Float.valueOf(initialOverdraft), email, city);
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
 
     public String getName() {
         return name;
@@ -133,7 +133,6 @@ public class Client implements Report, Comparable {
     public int getId() {
         return id;
     }
-
 
     public int compareTo(Object o) {
         Client object2 = (Client) o;
