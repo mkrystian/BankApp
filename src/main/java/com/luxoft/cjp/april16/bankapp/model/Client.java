@@ -2,19 +2,17 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-public class Client implements Report, Comparable {
+public class Client implements Report, Comparable, Serializable {
 
     private static int autoincrement = 0;
-    private final Set<Account> accounts = new HashSet<>();
+    private final Set<Account> accounts = new TreeSet<>();
     private int id = ++autoincrement;
     private String pesel;
     private String name;
@@ -32,7 +30,7 @@ public class Client implements Report, Comparable {
         this.city = city;
     }
 
-    public static Client factoryMethodForFeeds(Map<String, String> feed) {
+    static Client factoryMethodForFeeds(Map<String, String> feed) {
 
         String pesel = feed.get("pesel");
         String name = feed.get("name");
@@ -44,7 +42,7 @@ public class Client implements Report, Comparable {
         return new Client(name, Gender.factoryMethod(gender), pesel, Float.valueOf(initialOverdraft), email, city);
     }
 
-    public String getPesel() {
+    String getPesel() {
         return pesel;
     }
 

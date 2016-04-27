@@ -56,16 +56,15 @@ public class BankFeedServiceImpl implements BankFeedService {
             loadFileToBank(file);
         }
 
-        System.out.println(filesList);
 
     }
 
     private void loadFileToBank(File file) {
         try (FileReader fileReader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String stringFeed = "";
+            String stringFeed;
 
-            while ((stringFeed = bufferedReader.readLine()) != null && stringFeed != "") {
+            while ((stringFeed = bufferedReader.readLine()) != null && !Objects.equals(stringFeed, "")) {
                 bank.parseFeed(parseStringFeed(stringFeed));
             }
         } catch (IOException e) {
@@ -92,7 +91,6 @@ public class BankFeedServiceImpl implements BankFeedService {
         for (String element : args) {
             addToMap(map, parseKeyValuePair(element));
         }
-        System.out.println(Arrays.toString(args));
         return map;
     }
 

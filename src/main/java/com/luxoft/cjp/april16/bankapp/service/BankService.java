@@ -26,4 +26,8 @@ public interface BankService {
     Set<Client> getClients(Bank bank);
 
     List<Client> getClientsByName(Bank bank, String name);
+
+    void saveClient( Client client );
+
+    Client loadClient();
 }

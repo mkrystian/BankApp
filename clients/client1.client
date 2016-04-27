@@ -1,0 +1,7 @@
+name=Tom Cruise;gender=MALE;pesel=78021298512;initialOverdraft=2500;email=mymail@abc.com;city=New York;account=s;balance=3000
+name=Elton John;gender=MALE;pesel=78041298513;initialOverdraft=0;email=nomail@rocks.com;city=Washington;account=s;balance=3000
+name=Carla Willis;gender=FEMALE;pesel=90121398512;initialOverdraft=4000;email=jana@abc.com;city=New Jersey;account=s;balance=3000
+name=Leonardo Dicaprio;gender=MALE;pesel=92121391212;initialOverdraft=1000;email=balti@abc.com;city=London;account=s;balance=3000
+name=Jena Philips;gender=FEMALE;pesel=89121398213;initialOverdraft=500;email=mailtance@abc.com;city=London;account=s;balance=3000
+name=Jena Philips;gender=FEMALE;pesel=89121398213;initialOverdraft=500;email=mailtance@abc.com;city=London;account=s;balance=3000
+name=Jena Philips;gender=FEMALE;pesel=89121398213;initialOverdraft=500;email=mailtance@abc.com;city=London;account=c;balance=200;overdraft=2000

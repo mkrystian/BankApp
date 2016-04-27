@@ -2,11 +2,13 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.model.exceptions.IncorrectGenderException;
 
+import java.io.Serializable;
+
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-public enum Gender {
+public enum Gender implements Serializable{
     MALE("Mr. ", "male"),
     FEMALE("Mrs. ", "female");
 

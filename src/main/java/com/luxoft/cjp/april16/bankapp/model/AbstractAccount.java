@@ -10,7 +10,7 @@ import java.util.Map;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-public abstract class AbstractAccount implements Account {
+abstract class AbstractAccount implements Account {
 
     private static int autoincrement = 0;
     private static Map<String, AccountFactoryCommand> classMap = new HashMap<>();
@@ -24,13 +24,13 @@ public abstract class AbstractAccount implements Account {
     private int id = ++autoincrement;
     private float balance;
 
-    public AbstractAccount(float balance) {
+    AbstractAccount(float balance) {
         if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
         this.balance = balance;
     }
 
     // Runs different factory method depends on value in account type
-    public static Account factoryMethodForFeed(Map<String, String> feed) {
+    static Account factoryMethodForFeed(Map<String, String> feed) {
         //System.out.println(classMap.containsKey("c")) ;
         return classMap.get(feed.get("account")).execute(feed);
     }
@@ -110,4 +110,9 @@ public abstract class AbstractAccount implements Account {
             return SavingAccount.savingAccountFactoryMethodForFeed(feed);
         }
     }
+
+    public int compareTo( Object object){
+        return this.getId() - ( (AbstractAccount) object ).getId();
+    }
+
 }

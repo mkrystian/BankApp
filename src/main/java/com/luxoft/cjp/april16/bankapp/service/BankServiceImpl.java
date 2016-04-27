@@ -5,6 +5,7 @@ import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 public class BankServiceImpl implements BankService {
 
-    //  private final Bank bank = new Bank();
+    private String file = System.getProperty("user.dir") + "\\clients\\serialized\\serialized.ser";
 
     @Override
     public void addClient(Bank bank, Client client) {
@@ -57,11 +58,41 @@ public class BankServiceImpl implements BankService {
         Map<String, List<Client>> map = bank.getClientsMap();
         List<Client> list = new ArrayList<>();
 
-        map.entrySet().stream().filter(entry -> entry.getKey().toLowerCase().matches(".*" + name.toLowerCase() + ".*")).forEach(entry -> {
-            list.addAll(entry.getValue());
-        });
+        map.entrySet().stream().filter(entry -> entry.getKey().toLowerCase().matches(".*" + name.toLowerCase() + ".*"))
+                .forEach(entry -> list.addAll(entry.getValue()));
 
         return list;
+    }
+
+    @Override
+    public void saveClient(Client client) {
+        File outboundFile = new File(file);
+        if (!outboundFile.exists()) {
+            try {
+                outboundFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try (FileOutputStream fileOutputStream = new FileOutputStream(outboundFile);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Client loadClient() {
+        Client client = null;
+
+        try (FileInputStream fileInputStream = new FileInputStream(file);
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            client = (Client) objectInputStream.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return client;
     }
 
 

@@ -13,7 +13,8 @@ public class MainMenuCommand extends AbstractMenuCommand {
         super.registerCommand(3, new DepositCommand());
         super.registerCommand(4, new TransferCommand());
         super.registerCommand(5, new AddClientCommand());
-        super.registerCommand(6, new Command() {
+        super.registerCommand(6, new FeedDataCommand());
+        super.registerCommand(7, new Command() {
             public void execute() {
                 System.exit(0);
             }
