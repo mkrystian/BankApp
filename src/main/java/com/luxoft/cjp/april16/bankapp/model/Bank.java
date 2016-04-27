@@ -20,17 +20,14 @@ public class Bank implements Report {
     private String name;
 
     {
-        clientRegistrationListeners.add(new ClientRegistrationListener() {
-            @Override
-            public void onClientAdded(Client client) {
-                StringBuilder output = new StringBuilder();
-                output.append("*DebugLog | ")
-                        .append(new Date())
-                        .append(" | Client: ")
-                        .append(client.getName())
-                        .append(" had been created*");
-                System.out.println(output);
-            }
+        clientRegistrationListeners.add(client -> {
+            StringBuilder output = new StringBuilder();
+            output.append("*DebugLog | ")
+                    .append(new Date())
+                    .append(" | Client: ")
+                    .append(client.getName())
+                    .append(" had been created*");
+            System.out.println(output);
         });
         clientRegistrationListeners.add(new MapAddListener());
     }
@@ -103,7 +100,11 @@ public class Bank implements Report {
 
     public void parseFeed(Map<String, String> feed) {
         Client client = acquireClient(feed);
-        client.addAccount(AbstractAccount.factoryMethodForFeed(feed));
+        Account account = AbstractAccount.factoryMethodForFeed(feed);
+        client.addAccount( account );
+        if ( feed.containsKey( "active" ) && feed.get( "active" ).equals( "true" )){
+            client.setActiveAccount( account );
+        }
     }
 
     private Client acquireClient(Map<String, String> feed) {
@@ -125,7 +126,7 @@ public class Bank implements Report {
     }
 
 
-    public interface ClientRegistrationListener {
+    interface ClientRegistrationListener {
         void onClientAdded(Client client);
     }
 
