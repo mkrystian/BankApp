@@ -3,6 +3,7 @@ package com.luxoft.cjp.april16.bankapp.service;
 import com.luxoft.cjp.april16.bankapp.model.Account;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
+import com.luxoft.cjp.april16.bankapp.service.exceptions.ClientNotFoundByPeselException;
 
 import java.util.List;
 import java.util.Set;
@@ -30,4 +31,6 @@ public interface BankService {
     void saveClient( Client client );
 
     Client loadClient();
+
+    Client getClientByPesel(Bank bank, String pesel) throws ClientNotFoundByPeselException;
 }

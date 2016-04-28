@@ -3,7 +3,10 @@ package com.luxoft.cjp.april16.bankapp.model;
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Bank Application for CJP
@@ -42,7 +45,7 @@ public class Client implements Report, Comparable, Serializable {
         return new Client(name, Gender.factoryMethod(gender), pesel, Float.valueOf(initialOverdraft), email, city);
     }
 
-    String getPesel() {
+    public String getPesel() {
         return pesel;
     }
 

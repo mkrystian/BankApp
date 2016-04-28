@@ -4,6 +4,7 @@ import com.luxoft.cjp.april16.bankapp.model.Account;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
+import com.luxoft.cjp.april16.bankapp.service.exceptions.ClientNotFoundByPeselException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -93,6 +94,23 @@ public class BankServiceImpl implements BankService {
             e.printStackTrace();
         }
         return client;
+    }
+
+    @Override
+    public Client getClientByPesel(Bank bank, String pesel) throws ClientNotFoundByPeselException {
+        Client client = null;
+        for (Client element : bank.getClients()) {
+            if (element.getPesel().equals(pesel)) {
+                client = element;
+            }
+        }
+
+        if (client != null) {
+            return client;
+        } else {
+            throw new ClientNotFoundByPeselException(pesel);
+        }
+
     }
 
 
