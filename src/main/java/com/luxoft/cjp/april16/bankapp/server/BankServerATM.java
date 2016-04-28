@@ -37,7 +37,7 @@ public class BankServerATM implements BankServerInterface {
     public Response executeRequest(Request request) {
         ATMRequest atmRequest = (ATMRequest) request;
 
-        throw new UnsupportedOperationException();
+        return commandMap.get(((ATMRequest) request).getRequestType()).execute(atmRequest);
     }
 
     private interface ATMCommand {
@@ -49,7 +49,8 @@ public class BankServerATM implements BankServerInterface {
 
         public Client getClient(ATMRequest request) throws ClientNotFoundByPeselException {
             pesel = request.getData()[0];
-            Client client = null;
+            System.out.println(pesel);
+            Client client;
 
             client = bankService.getClientByPesel(bank, pesel);
 
@@ -63,7 +64,7 @@ public class BankServerATM implements BankServerInterface {
         public Response execute(ATMRequest request) {
 
             Response newResponse = new Response();
-            Client client = null;
+            Client client;
             try {
                 client = super.getClient(request);
                 newResponse.setType(ResponseType.SUCCESS);
@@ -84,7 +85,7 @@ public class BankServerATM implements BankServerInterface {
         @Override
         public Response execute(ATMRequest request) {
             Response newResponse = new Response();
-            Client client = null;
+            Client client;
             Float amount = Float.valueOf(request.getData()[1]);
             try {
                 client = super.getClient(request);

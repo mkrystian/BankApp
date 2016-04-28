@@ -22,7 +22,7 @@ public class Server implements Runnable {
     private ServerSocket Serversocket = null;
     private Bank bank;
     private BankService bankService;
-    private Map<IdentityType, BankServerInterface> bankServerMap = createBankServerMap();
+    private Map<IdentityType, BankServerInterface> bankServerMap;
 
 
     public Server(int portNumber, Bank bank, BankService bankService) {
@@ -31,6 +31,7 @@ public class Server implements Runnable {
         this.bankService = bankService;
 
         createBankServerMap();
+        System.out.println("TEST");
         try {
             this.Serversocket = new ServerSocket(portNumber);
         } catch (IOException e) {
@@ -39,10 +40,13 @@ public class Server implements Runnable {
     }
 
     private Map<IdentityType, BankServerInterface> createBankServerMap() {
+
         Map<IdentityType, BankServerInterface> map = new HashMap<>();
         map.put(IdentityType.ATM, new BankServerATM(bank, bankService));
         map.put(IdentityType.REMOTE_OFFICE, new BankServerRemoteOffice(bank, bankService));
+
         return map;
+
     }
 
 
@@ -60,6 +64,7 @@ public class Server implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
 
             try (
                     OutputStream outputStream = socket.getOutputStream();
