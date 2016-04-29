@@ -2,7 +2,6 @@ package com.luxoft.cjp.april16.bankapp.server;
 
 
 import com.luxoft.cjp.april16.bankapp.model.Bank;
-import com.luxoft.cjp.april16.bankapp.server.identitycards.IdentityType;
 import com.luxoft.cjp.april16.bankapp.server.messages.requests.Request;
 import com.luxoft.cjp.april16.bankapp.server.messages.responses.Response;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
@@ -10,8 +9,6 @@ import com.luxoft.cjp.april16.bankapp.service.BankService;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * BankApp for CJP
@@ -22,7 +19,6 @@ public class Server implements Runnable {
     private ServerSocket Serversocket = null;
     private Bank bank;
     private BankService bankService;
-    private Map<IdentityType, BankServerInterface> bankServerMap;
 
 
     public Server(int portNumber, Bank bank, BankService bankService) {
@@ -30,25 +26,15 @@ public class Server implements Runnable {
         this.bank = bank;
         this.bankService = bankService;
 
-        createBankServerMap();
         System.out.println("TEST");
         try {
             this.Serversocket = new ServerSocket(portNumber);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    private Map<IdentityType, BankServerInterface> createBankServerMap() {
-
-        Map<IdentityType, BankServerInterface> map = new HashMap<>();
-        map.put(IdentityType.ATM, new BankServerATM(bank, bankService));
-        map.put(IdentityType.REMOTE_OFFICE, new BankServerRemoteOffice(bank, bankService));
-
-        return map;
 
     }
-
 
     @Override
     public void run() {
@@ -65,20 +51,25 @@ public class Server implements Runnable {
                 e.printStackTrace();
             }
 
+            while (!socket.isClosed()) {
+                try (
+                        OutputStream outputStream = socket.getOutputStream();
+                        InputStream inputStream = socket.getInputStream();
+                        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
 
-            try (
-                    OutputStream outputStream = socket.getOutputStream();
-                    InputStream inputStream = socket.getInputStream();
-                    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
 
-                request = (Request) objectInputStream.readObject();
-                message = bankServerMap.get(request.getIdentityType()).executeRequest(request);
-                objectOutputStream.writeObject(message);
-                objectOutputStream.flush();
+                    request = (Request) objectInputStream.readObject();
 
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                    message = request.getIdentityType().getBankServer(bank, bankService)
+                            .executeRequest(request);
+                    objectOutputStream.writeObject(message);
+                    objectOutputStream.flush();
+
+
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

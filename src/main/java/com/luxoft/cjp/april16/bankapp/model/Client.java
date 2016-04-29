@@ -74,6 +74,7 @@ public class Client implements Report, Comparable, Serializable {
     }
 
     public float getBalance() {
+        System.out.println(accounts);
         return activeAccount.getBalance();
     }
 

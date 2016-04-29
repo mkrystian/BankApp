@@ -35,17 +35,25 @@ public class ATM {
             ATMRequest request = new ATMRequest();
 
             request.setIdentityCard(identityCard);
-            request.setRequestType(ATMRequestType.GETBALANCE);
             String[] data = new String[1];
-            data[0] = "89121398213";
+            data[0] = "78021298512";
+            request.setRequestType(ATMRequestType.GET_BALANCE);
             request.setData(data);
             objectOutputStream.writeObject(request);
             objectOutputStream.flush();
-            System.out.println("Test wyslania");
+            data = new String[2];
+            data[0] = "78021298512";
+            data[1] = "200";
+            request.setData(data);
+            request.setRequestType(ATMRequestType.WITHDRAW);
+            objectOutputStream.writeObject(request);
+            objectOutputStream.flush();
+
 
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-
             System.out.println(((Response) objectInputStream.readObject()).getMessage());
+            System.out.println(((Response) objectInputStream.readObject()).getMessage());
+
 
         } catch (IOException e) {
             e.printStackTrace();

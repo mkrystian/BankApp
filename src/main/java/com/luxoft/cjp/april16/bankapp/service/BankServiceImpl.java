@@ -37,6 +37,9 @@ public class BankServiceImpl implements BankService {
     @Override
     public void addAccount(Client client, Account account) {
         client.addAccount(account);
+        if (client.getActiveAccount() == null) {
+            setActiveAccount(client, account);
+        }
     }
 
     @Override

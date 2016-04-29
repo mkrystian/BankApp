@@ -48,17 +48,17 @@ public class BankApplication {
         accounts[8] = new CheckingAccount(2100, 2000);
         accounts[9] = new CheckingAccount(2000, 1000);
 
-        clients[0].addAccount(accounts[0]);
-        clients[0].addAccount(accounts[1]);
-        clients[0].addAccount(accounts[2]);
-        clients[0].addAccount(accounts[3]);
-        clients[0].addAccount(accounts[4]);
+        bankService.addAccount(clients[0], accounts[0]);
+        bankService.addAccount(clients[1], accounts[1]);
+        bankService.addAccount(clients[2], accounts[2]);
+        bankService.addAccount(clients[3], accounts[3]);
+        bankService.addAccount(clients[4], accounts[4]);
 
-        clients[1].addAccount(accounts[5]);
-        clients[1].addAccount(accounts[6]);
-        clients[1].addAccount(accounts[7]);
-        clients[1].addAccount(accounts[8]);
-        clients[1].addAccount(accounts[9]);
+        bankService.addAccount(clients[0], accounts[5]);
+        bankService.addAccount(clients[1], accounts[6]);
+        bankService.addAccount(clients[2], accounts[7]);
+        bankService.addAccount(clients[3], accounts[8]);
+        bankService.addAccount(clients[4], accounts[9]);
 
     }
 

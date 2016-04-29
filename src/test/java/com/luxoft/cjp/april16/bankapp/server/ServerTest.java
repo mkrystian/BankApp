@@ -1,5 +1,6 @@
 package com.luxoft.cjp.april16.bankapp.server;
 
+import com.luxoft.cjp.april16.bankapp.BankApplication;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
 import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
@@ -21,7 +22,7 @@ public class ServerTest {
         Bank bank = new Bank("Test Bank");
         BankService bankService = new BankServiceImpl();
         server = new Server(4231, bank, bankService);
-
+        BankApplication.initialize(bank, bankService);
     }
 
     @Test
