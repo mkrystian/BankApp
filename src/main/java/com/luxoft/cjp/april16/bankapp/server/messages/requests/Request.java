@@ -13,6 +13,22 @@ public abstract class Request implements Serializable {
     private String[] data;
     private IdentityCard identityCard;
 
+    private boolean closeConnection = false;
+
+    public Request(IdentityCard identityCard) {
+        this.identityCard = identityCard;
+    }
+
+    public boolean isCloseConnection() {
+        return closeConnection;
+    }
+
+    public void setCloseConnection(boolean closeConnection) {
+        this.closeConnection = closeConnection;
+    }
+
+
+
     public IdentityType getIdentityType() {
         return identityCard.getType();
     }

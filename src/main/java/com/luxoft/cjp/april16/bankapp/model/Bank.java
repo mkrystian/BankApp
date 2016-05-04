@@ -15,6 +15,7 @@ public class Bank implements Report {
     private static int autoincrement = 0;
     private final Set<Client> clients = new HashSet<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
+    private final List<ClientDeletionListener> clientDeletionListeners = new ArrayList<>();
     private final Map<String, List<Client>> clientsMap = new HashMap<>();
     private int id = ++autoincrement;
     private String name;
@@ -29,7 +30,8 @@ public class Bank implements Report {
                     .append(" had been created*");
             System.out.println(output);
         });
-        clientRegistrationListeners.add(new MapAddListener());
+        clientRegistrationListeners.add(new MapListener());
+        clientDeletionListeners.add(new MapListener());
     }
 
     public Bank(String name) {
@@ -79,7 +81,12 @@ public class Bank implements Report {
     }
 
     public void removeClient(Client client) {
+
         clients.remove(client);
+        for (ClientDeletionListener element : clientDeletionListeners) {
+            element.onClientDeleted(client);
+        }
+
     }
 
     public void addClientRegistrationListener(ClientRegistrationListener clientRegistrationListener) {
@@ -130,6 +137,9 @@ public class Bank implements Report {
         void onClientAdded(Client client);
     }
 
+    interface ClientDeletionListener {
+        void onClientDeleted(Client client);
+    }
 
     public class EmailNotificationListener implements ClientRegistrationListener {
         @Override
@@ -156,7 +166,7 @@ public class Bank implements Report {
         }
     }
 
-    private class MapAddListener implements ClientRegistrationListener {
+    private class MapListener implements ClientRegistrationListener, ClientDeletionListener {
 
         @Override
         public void onClientAdded(Client client) {
@@ -166,6 +176,14 @@ public class Bank implements Report {
                 clientsMap.put(client.getName(), newList);
             } else {
                 clientsMap.get(client.getName()).add(client);
+            }
+        }
+
+        @Override
+        public void onClientDeleted(Client client) {
+            clientsMap.get(client.getName()).remove(client);
+            if (clientsMap.get(client.getName()).isEmpty()) {
+                clientsMap.remove(client.getName());
             }
         }
     }

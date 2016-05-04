@@ -8,8 +8,10 @@ import java.io.Serializable;
  */
 public class Response implements Serializable {
 
-    ResponseType type;
-    String message;
+    private ResponseType type;
+    private String message;
+    private boolean closeConnection = false;
+
 
     public ResponseType getType() {
         return type;
@@ -25,5 +27,13 @@ public class Response implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isCloseConnection() {
+        return closeConnection;
+    }
+
+    public void setCloseConnection(boolean closeConnection) {
+        this.closeConnection = closeConnection;
     }
 }

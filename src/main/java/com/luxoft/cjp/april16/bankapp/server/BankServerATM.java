@@ -24,7 +24,6 @@ public class BankServerATM implements BankServerInterface {
     @Override
     public Response executeRequest(Request request) {
         ATMRequest atmRequest = (ATMRequest) request;
-
         return atmRequest.getRequestType().getCommand(bank, bankService).execute(atmRequest);
     }
 

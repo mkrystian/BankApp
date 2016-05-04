@@ -8,5 +8,6 @@ import java.io.Serializable;
  */
 public enum ResponseType implements Serializable {
     SUCCESS,
-    FAIL
+    FAIL,
+    CLOSE_CONNECTION
 }

@@ -12,13 +12,18 @@ import com.luxoft.cjp.april16.bankapp.service.BankService;
  */
 public class BankServerRemoteOffice implements BankServerInterface {
 
+    private Bank bank;
+    private BankService bankService;
+
     public BankServerRemoteOffice(Bank bank, BankService bankService) {
+        this.bank = bank;
+        this.bankService = bankService;
     }
 
     @Override
     public Response executeRequest(Request request) {
-        RORequest atmRequest = (RORequest) request;
+        RORequest roRequest = (RORequest) request;
 
-        throw new UnsupportedOperationException();
+        return roRequest.getRequestType().getCommand(bank, bankService).execute(roRequest);
     }
 }

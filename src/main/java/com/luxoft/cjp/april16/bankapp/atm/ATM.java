@@ -22,7 +22,7 @@ public class ATM {
 
         Socket socket = null;
         try {
-            socket = new Socket("localhost", 4231);
+            socket = new Socket("localhost", 2004);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class ATM {
 
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
 
-            ATMRequest request = new ATMRequest();
+            ATMRequest request = new ATMRequest(identityCard, ATMRequestType.GET_BALANCE);
 
             request.setIdentityCard(identityCard);
             String[] data = new String[1];
@@ -44,6 +44,7 @@ public class ATM {
             data = new String[2];
             data[0] = "78021298512";
             data[1] = "200";
+            request.setCloseConnection(true);
             request.setData(data);
             request.setRequestType(ATMRequestType.WITHDRAW);
             objectOutputStream.writeObject(request);
@@ -55,9 +56,7 @@ public class ATM {
             System.out.println(((Response) objectInputStream.readObject()).getMessage());
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

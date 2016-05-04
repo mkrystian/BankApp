@@ -2,6 +2,7 @@ package com.luxoft.cjp.april16.bankapp.server.messages.requests;
 
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.server.commands.AbstractATMCommand;
+import com.luxoft.cjp.april16.bankapp.server.commands.CloseConnectionATMCommand;
 import com.luxoft.cjp.april16.bankapp.server.commands.GetBalanceCommand;
 import com.luxoft.cjp.april16.bankapp.server.commands.WithdrawCommand;
 import com.luxoft.cjp.april16.bankapp.service.BankService;
@@ -23,6 +24,12 @@ public enum ATMRequestType implements Serializable {
         @Override
         public AbstractATMCommand getCommand(Bank bank, BankService bankService) {
             return new WithdrawCommand(bank, bankService);
+        }
+    },
+    CLOSE_CONNECTION {
+        @Override
+        public AbstractATMCommand getCommand(Bank bank, BankService bankService) {
+            return new CloseConnectionATMCommand(bank, bankService);
         }
     };
 

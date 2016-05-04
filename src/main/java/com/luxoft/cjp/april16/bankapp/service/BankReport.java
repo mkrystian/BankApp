@@ -57,10 +57,20 @@ public class BankReport {
                 getAccountsNumber(bank) + "\nBank credit sum: " +
                 getBankCreditSum(bank) + "\nNumber of clients in particular cities: ");
 
-        //StringBuilder output = new StringBuilder();
-
         for (Map.Entry<String, List<Client>> entrySet : getClientsByCity(bank).entrySet()) {
             System.out.println(entrySet.getKey() + " : " + entrySet.getValue().size());
         }
+    }
+
+    public String getReport(Bank bank) {
+        StringBuilder output = new StringBuilder("Bank Report: \nAccounts number: " +
+                getAccountsNumber(bank) + "\nBank credit sum: " +
+                getBankCreditSum(bank) + "\nNumber of clients in particular cities: \n");
+
+
+        for (Map.Entry<String, List<Client>> entrySet : getClientsByCity(bank).entrySet()) {
+            output.append(entrySet.getKey()).append(" : ").append(entrySet.getValue().size()).append("\n");
+        }
+        return output.toString();
     }
 }
