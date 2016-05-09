@@ -34,8 +34,8 @@ public class CheckingAccount extends AbstractAccount {
     }
 
     @Override
-    public void withdraw(float x) throws NotEnoughFoundsException {
-        if (super.getBalance() + overdraft > x) {
+    public synchronized void withdraw(float x) throws NotEnoughFoundsException {
+        if (super.getBalance() + overdraft >= x) {
             super.setBalance(super.getBalance() - x);
         } else {
             throw new OverDraftLimitExceededException(this, x, super.getBalance(), overdraft);

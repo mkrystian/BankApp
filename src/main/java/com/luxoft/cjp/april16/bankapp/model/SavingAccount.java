@@ -20,8 +20,8 @@ public class SavingAccount extends AbstractAccount {
     }
 
     @Override
-    public void withdraw(float x) throws NotEnoughFoundsException {
-        if (super.getBalance() > x) {
+    public synchronized void withdraw(float x) throws NotEnoughFoundsException {
+        if (super.getBalance() >= x) {
             super.setBalance(super.getBalance() - x);
         } else {
             throw new NotEnoughFoundsException(this, x, super.getBalance());
