@@ -9,14 +9,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * BankApp for CJP
  * Created by KMajewski on 2016-05-09.
  */
-public class ServerThread implements Runnable {
+class ServerThread implements Runnable {
 
-    private static int counter = 0;
+    private static AtomicInteger counter = new AtomicInteger(0);
     private Socket clientSocket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -24,16 +25,16 @@ public class ServerThread implements Runnable {
     private Bank bank;
     private BankService bankService;
 
-    public ServerThread(Socket clientSocket, Bank bank, BankService bankService) {
+    ServerThread(Socket clientSocket, Bank bank, BankService bankService) {
         this.clientSocket = clientSocket;
-        counter++;
+        counter.incrementAndGet();
         this.bank = bank;
         this.bankService = bankService;
 
     }
 
-    public static int getCounter() {
-        return counter;
+    static int getCounter() {
+        return counter.get();
     }
 
     @Override
@@ -71,10 +72,10 @@ public class ServerThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        counter--;
+        counter.decrementAndGet();
     }
 
-    void sendMessage(final Response response) {
+    private void sendMessage(final Response response) {
         try {
             out.writeObject(response);
             out.flush();

@@ -7,12 +7,15 @@ import com.luxoft.cjp.april16.bankapp.server.messages.responses.Response;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 abstract class BankClient {
     private final String SERVER;
     private final int port;
+    private final int sleepingTime = 500;
+    private final int maxRetry = 5;
     IdentityCard identityCard;
     private Socket requestSocket;
     private ObjectOutputStream out;
@@ -27,7 +30,20 @@ abstract class BankClient {
     private void establishConnection() {
         try {
             // 1. creating a socket to connect to the server
-            requestSocket = new Socket(SERVER, port);
+            //Try to reconnect
+            for (int i = 0; i < maxRetry; i++)
+                try {
+                    requestSocket = new Socket(SERVER, port);
+                    break;
+                } catch (ConnectException e) {
+                    try {
+                        Thread.sleep(sleepingTime);
+                    } catch (InterruptedException e1) {
+                        if (i == maxRetry - 1)
+                            throw new ConnectException("Cannot connect after " + maxRetry + " retries");
+                    }
+
+                }
             //System.out.println("Connected to localhost in port 2004");
             // 2. get Input and Output streams
             out = new ObjectOutputStream(requestSocket.getOutputStream());

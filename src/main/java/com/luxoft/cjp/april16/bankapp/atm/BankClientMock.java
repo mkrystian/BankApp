@@ -8,11 +8,13 @@ import com.luxoft.cjp.april16.bankapp.server.messages.requests.ATMRequest;
 import com.luxoft.cjp.april16.bankapp.server.messages.requests.ATMRequestType;
 import com.luxoft.cjp.april16.bankapp.server.messages.requests.Request;
 
+import java.util.concurrent.Callable;
+
 /**
  * BankApp for CJP
  * Created by KMajewski on 2016-05-04.
  */
-public class BankClientMock extends BankClient implements Runnable {
+public class BankClientMock extends BankClient implements Callable<Long> {
 
     private String pesel;
 
@@ -35,13 +37,19 @@ public class BankClientMock extends BankClient implements Runnable {
         request.getData()[0] = pesel;
         request.getData()[1] = String.valueOf(1);
 
-        sendRequest(request).getMessage();
+        sendRequest(request);
 
-        //System.out.println( sendRequest(request).getMessage());
+    }
+
+
+    public void run() {
+        withdraw();
     }
 
     @Override
-    public void run() {
+    public Long call() throws Exception {
+        Long currentTime = System.currentTimeMillis();
         withdraw();
+        return System.currentTimeMillis() - currentTime;
     }
 }
