@@ -1,0 +1,23 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="BankAppORM">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <!-- connection properties -->
+            <property name="hibernate.connection.url" value="jdbc:h2:~/BankAppORM"/>
+            <property name="hibernate.connection.user" value="sa"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+            <!-- scan for annotated classes -->
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <!-- SQL dialect and logging -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- schema generation (drop and create during startup): https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm -->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.database.create-source" value="metadata"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -2,16 +2,24 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.Map;
 
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class SavingAccount extends AbstractAccount {
 
     public SavingAccount(float balance) {
         super(balance);
+    }
+
+    public SavingAccount() {
     }
 
     public static Account savingAccountFactoryMethodForFeed(Map<String, String> feed) {

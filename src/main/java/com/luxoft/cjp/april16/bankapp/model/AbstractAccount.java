@@ -2,6 +2,7 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,9 @@ import java.util.Map;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
+@MappedSuperclass
+@Table(name = "ACCOUNT")
+@Inheritance(strategy = InheritanceType.JOINED)
 abstract class AbstractAccount implements Account {
 
     private static int autoincrement = 0;
@@ -21,12 +25,16 @@ abstract class AbstractAccount implements Account {
 
     }
 
+    @Id
     private int id = ++autoincrement;
     private float balance;
 
     AbstractAccount(float balance) {
         if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
         this.balance = balance;
+    }
+
+    protected AbstractAccount() {
     }
 
     // Runs different factory method depends on value in account type
@@ -91,6 +99,10 @@ abstract class AbstractAccount implements Account {
             account.deposit(amount);
     }
 
+    public int compareTo(Object object) {
+        return this.getId() - ((AbstractAccount) object).getId();
+    }
+
     private interface AccountFactoryCommand {
         Account execute(Map<String, String> feed);
     }
@@ -109,10 +121,6 @@ abstract class AbstractAccount implements Account {
         public Account execute(Map<String, String> feed) {
             return SavingAccount.savingAccountFactoryMethodForFeed(feed);
         }
-    }
-
-    public int compareTo( Object object){
-        return this.getId() - ( (AbstractAccount) object ).getId();
     }
 
 }
