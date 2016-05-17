@@ -33,14 +33,16 @@ public class BankServerTradedTest {
         Account savingAccount = new CheckingAccount(numberOfThreads, 0);
         client.addAccount(savingAccount);
         client.setActiveAccount(savingAccount);
+
         try {
             bank.addClient(client);
         } catch (ClientExistsException e) {
             e.printStackTrace();
         }
 
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+        ExecutorService executor = Executors.newFixedThreadPool(100);
         Thread bankServerThread = new Thread(bankServer);
+        bankServerThread.setDaemon(true);
         bankServerThread.start();
 
         List<Future<Long>> threadList = new ArrayList<>(1000);
