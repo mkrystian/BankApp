@@ -6,7 +6,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <!-- connection properties -->
-            <property name="hibernate.connection.url" value="jdbc:h2:~/BankAppORM"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost:9092/~\BankAppORM"/>
             <property name="hibernate.connection.user" value="sa"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
             <!-- scan for annotated classes -->

@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="BankAppORM" />
+          <factory-entry name="BankAppORM" value="eb9c2899-e432-4d20-8e63-1b762949598d" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/Resources/META-INF/persistence.xml" />
       </configuration>
@@ -27,7 +27,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-all:1.3" level="project" />
-    <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />

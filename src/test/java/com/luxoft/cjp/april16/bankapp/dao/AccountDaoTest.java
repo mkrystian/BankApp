@@ -24,7 +24,7 @@ public class AccountDaoTest {
         //AccountDao savingAccountDao = new AccountDao(entityManager);
 
         Account persistenceAccount = accountDao.saveAccount(savingAccount);
-        persistenceAccount.withdraw(999);
+        persistenceAccount.withdraw(1999.99f);
         accountDao.saveAccount(checkingAccount);
         accountDao.close();
     }

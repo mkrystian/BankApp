@@ -11,9 +11,11 @@ import java.util.Map;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
-@MappedSuperclass
-@Table(name = "ACCOUNT")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "DB_ACCOUNT")
+@DiscriminatorColumn(name = "ACCOUNT_TYPE")
+//@ForceDiscriminator
 abstract class AbstractAccount implements Account {
 
     private static int autoincrement = 0;
@@ -26,7 +28,8 @@ abstract class AbstractAccount implements Account {
     }
 
     @Id
-    private int id = ++autoincrement;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private float balance;
 
     AbstractAccount(float balance) {

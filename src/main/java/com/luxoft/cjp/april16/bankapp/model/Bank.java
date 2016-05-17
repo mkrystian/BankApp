@@ -2,22 +2,36 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.model.exceptions.ClientExistsException;
 import com.luxoft.cjp.april16.bankapp.service.Report;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
+import javax.persistence.*;
 import java.util.*;
 
 /**
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
+@Entity
 public class Bank implements Report {
 
 
     private static int autoincrement = 0;
+    @OneToMany
+    @Cascade(CascadeType.MERGE)
     private final Set<Client> clients = new HashSet<>();
+    @Transient
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
+    @Transient
     private final List<ClientDeletionListener> clientDeletionListeners = new ArrayList<>();
+
+    @Transient
     private final Map<String, List<Client>> clientsMap = new HashMap<>();
-    private int id = ++autoincrement;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    //private int id = ++autoincrement;
     private String name;
 
     {
@@ -36,6 +50,9 @@ public class Bank implements Report {
 
     public Bank(String name) {
         this.name = name;
+    }
+
+    public Bank() {
     }
 
     public int getId() {

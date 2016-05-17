@@ -1,7 +1,9 @@
 package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.service.Report;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
@@ -12,11 +14,20 @@ import java.util.TreeSet;
  * Bank Application for CJP
  * Created by KMajewski on 2016-04-12.
  */
+
+@Entity
 public class Client implements Report, Comparable, Serializable {
 
     private static int autoincrement = 0;
-    private final Set<Account> accounts = new TreeSet<>();
-    private int id = ++autoincrement;
+
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
+    private final Set<AbstractAccount> accounts = new TreeSet<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    //private int id = ++autoincrement;
     private String pesel;
     private String name;
     private Gender gender;
@@ -31,6 +42,9 @@ public class Client implements Report, Comparable, Serializable {
         this.initialOverdraft = initialOverdraft;
         this.email = email;
         this.city = city;
+    }
+
+    public Client() {
     }
 
     static Client factoryMethodForFeeds(Map<String, String> feed) {
@@ -101,7 +115,7 @@ public class Client implements Report, Comparable, Serializable {
     }
 
     public void addAccount(Account account) {
-        accounts.add(account);
+        accounts.add((AbstractAccount) account);
     }
 
     public void removeAccount(Account account) {
@@ -127,10 +141,6 @@ public class Client implements Report, Comparable, Serializable {
 
     }
 
-    @Override
-    public int hashCode() {
-        return pesel.hashCode();
-    }
 
     public int getId() {
         return id;
