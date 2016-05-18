@@ -24,4 +24,6 @@ public interface Account extends Report, Comparable, Serializable {
     BigDecimal decimalValue();
 
     String toString();
+
+    AccountType getType();
 }

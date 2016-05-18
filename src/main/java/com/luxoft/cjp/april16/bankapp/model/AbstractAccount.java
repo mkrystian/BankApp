@@ -21,12 +21,14 @@ abstract class AbstractAccount implements Account {
 
     }
 
+    private AccountType type;
     private int id = ++autoincrement;
     private float balance;
 
-    AbstractAccount(float balance) {
+    AbstractAccount(float balance, AccountType accountType) {
         if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
         this.balance = balance;
+        this.type = accountType;
     }
 
     // Runs different factory method depends on value in account type
@@ -86,9 +88,18 @@ abstract class AbstractAccount implements Account {
     }
 
     @Override
+    public AccountType getType() {
+        return type;
+    }
+
+    @Override
     public void transferTo(Account account, float amount) throws NotEnoughFoundsException {
             this.withdraw(amount);
             account.deposit(amount);
+    }
+
+    public int compareTo(Object object) {
+        return this.getId() - ((AbstractAccount) object).getId();
     }
 
     private interface AccountFactoryCommand {
@@ -109,10 +120,6 @@ abstract class AbstractAccount implements Account {
         public Account execute(Map<String, String> feed) {
             return SavingAccount.savingAccountFactoryMethodForFeed(feed);
         }
-    }
-
-    public int compareTo( Object object){
-        return this.getId() - ( (AbstractAccount) object ).getId();
     }
 
 }

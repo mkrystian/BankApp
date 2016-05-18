@@ -11,7 +11,7 @@ import java.util.Map;
 public class SavingAccount extends AbstractAccount {
 
     public SavingAccount(float balance) {
-        super(balance);
+        super(balance, AccountType.SAVING_ACCOUNT);
     }
 
     public static Account savingAccountFactoryMethodForFeed(Map<String, String> feed) {

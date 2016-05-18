@@ -42,6 +42,10 @@ public class Bank implements Report {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,6 +134,10 @@ public class Bank implements Report {
             }
         }
         return client;
+    }
+
+    public String getName() {
+        return name;
     }
 
 

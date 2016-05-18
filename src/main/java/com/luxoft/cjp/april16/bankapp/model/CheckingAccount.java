@@ -14,7 +14,7 @@ public class CheckingAccount extends AbstractAccount {
     private float overdraft = 0;
 
     public CheckingAccount(float balance, float overdraft) {
-        super(balance);
+        super(balance, AccountType.CHECKING_ACCOUNT);
         if (overdraft < 0) throw new IllegalArgumentException("Overdraft could not be negative");
         this.overdraft = overdraft;
     }
@@ -52,5 +52,10 @@ public class CheckingAccount extends AbstractAccount {
     @Override
     public String toString() {
         return super.toString() + "|Checking account" + "|" + overdraft;
+    }
+
+    @Override
+    public AccountType getType() {
+        return null;
     }
 }
