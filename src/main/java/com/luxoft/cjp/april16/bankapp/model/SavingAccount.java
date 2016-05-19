@@ -12,9 +12,15 @@ public class SavingAccount extends AbstractAccount {
 
     public SavingAccount(float balance) {
         super(balance, AccountType.SAVING_ACCOUNT);
+        if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
     }
 
-    public static Account savingAccountFactoryMethodForFeed(Map<String, String> feed) {
+    public SavingAccount(float balance, int id) {
+        super(balance, AccountType.SAVING_ACCOUNT, id);
+        if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
+    }
+
+    static Account savingAccountFactoryMethodForFeed(Map<String, String> feed) {
         String balance = feed.get("balance");
         return new SavingAccount(Float.valueOf(balance));
     }

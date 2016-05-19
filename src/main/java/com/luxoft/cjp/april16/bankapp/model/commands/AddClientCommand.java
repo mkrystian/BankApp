@@ -10,7 +10,7 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class AddClientCommand implements Command {
+class AddClientCommand implements Command {
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -63,7 +63,7 @@ public class AddClientCommand implements Command {
 
         System.out.print("Client initial overdraft: ");
         inboundValue = scanner.nextLine();
-        if (!inboundValue.matches("^[0-9]+$") || !inboundValue.matches("^[0-9]+\\.[0-9]{1,2}$")) {
+        if (!inboundValue.matches("^[0-9]+$") && !inboundValue.matches("^[0-9]+\\.[0-9]{1,2}$")) {
             System.out.println(" Incorrect amount - interrupted");
             return;
         }

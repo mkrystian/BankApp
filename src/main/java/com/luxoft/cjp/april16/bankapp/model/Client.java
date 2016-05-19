@@ -15,8 +15,8 @@ import java.util.TreeSet;
 public class Client implements Report, Comparable, Serializable {
 
     private static int autoincrement = 0;
-    private final Set<Account> accounts = new TreeSet<>();
-    private int id = ++autoincrement;
+    private Set<Account> accounts = new TreeSet<>();
+    private int id = -1;
     private String pesel;
     private String name;
     private Gender gender;
@@ -24,6 +24,7 @@ public class Client implements Report, Comparable, Serializable {
     private float initialOverdraft = 0;
     private String email;
     private String city;
+
     public Client(String name, Gender gender, String pesel, float initialOverdraft, String email, String city) {
         this.pesel = pesel;
         this.name = name;
@@ -31,6 +32,16 @@ public class Client implements Report, Comparable, Serializable {
         this.initialOverdraft = initialOverdraft;
         this.email = email;
         this.city = city;
+    }
+
+    public Client(String name, Gender gender, String pesel, float initialOverdraft, String email, String city, int id) {
+        this.pesel = pesel;
+        this.name = name;
+        this.gender = gender;
+        this.initialOverdraft = initialOverdraft;
+        this.email = email;
+        this.city = city;
+        this.id = id;
     }
 
     static Client factoryMethodForFeeds(Map<String, String> feed) {
@@ -134,6 +145,10 @@ public class Client implements Report, Comparable, Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int compareTo(Object o) {

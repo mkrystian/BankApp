@@ -22,13 +22,18 @@ abstract class AbstractAccount implements Account {
     }
 
     private AccountType type;
-    private int id = ++autoincrement;
+    private int id = -1; // = ++autoincrement;
     private float balance;
-
     AbstractAccount(float balance, AccountType accountType) {
         if (balance < 0) throw new IllegalArgumentException("Balance could not be negative in saving account");
         this.balance = balance;
         this.type = accountType;
+    }
+
+    AbstractAccount(float balance, AccountType accountType, int id) {
+        this.balance = balance;
+        this.type = accountType;
+        this.id = id;
     }
 
     // Runs different factory method depends on value in account type
@@ -59,6 +64,10 @@ abstract class AbstractAccount implements Account {
     @Override
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

@@ -21,10 +21,10 @@ public enum Gender implements Serializable{
     }
 
     public static Gender factoryMethod(String gender) {
-        if (gender.toLowerCase().equals("f") || gender.toLowerCase().equals("female")) {
+        if (gender.toLowerCase().equals("f") || gender.toLowerCase().equals("female") || gender.toLowerCase().equals("FEMALE")) {
             return FEMALE;
         }
-        if (gender.toLowerCase().equals("m") || gender.toLowerCase().equals("male")) {
+        if (gender.toLowerCase().equals("m") || gender.toLowerCase().equals("male") || gender.toLowerCase().equals("MALE")) {
             return MALE;
         }
 

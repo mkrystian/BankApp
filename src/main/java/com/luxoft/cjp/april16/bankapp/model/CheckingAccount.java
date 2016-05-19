@@ -19,7 +19,13 @@ public class CheckingAccount extends AbstractAccount {
         this.overdraft = overdraft;
     }
 
-    public static Account checkingAccountFactoryMethodForFeed(Map<String, String> feed) {
+    public CheckingAccount(float balance, float overdraft, int id) {
+        super(balance, AccountType.CHECKING_ACCOUNT, id);
+        if (overdraft < 0) throw new IllegalArgumentException("Overdraft could not be negative");
+        this.overdraft = overdraft;
+    }
+
+    static Account checkingAccountFactoryMethodForFeed(Map<String, String> feed) {
         String balance = feed.get("balance");
         String overdraft = feed.get("overdraft");
         return new CheckingAccount(Float.valueOf(balance), Float.valueOf(overdraft));
@@ -54,8 +60,4 @@ public class CheckingAccount extends AbstractAccount {
         return super.toString() + "|Checking account" + "|" + overdraft;
     }
 
-    @Override
-    public AccountType getType() {
-        return null;
-    }
 }

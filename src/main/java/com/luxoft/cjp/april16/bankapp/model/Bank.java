@@ -13,10 +13,10 @@ public class Bank implements Report {
 
 
     private static int autoincrement = 0;
-    private final Set<Client> clients = new HashSet<>();
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
     private final List<ClientDeletionListener> clientDeletionListeners = new ArrayList<>();
     private final Map<String, List<Client>> clientsMap = new HashMap<>();
+    private Set<Client> clients = new HashSet<>();
     private int id = ++autoincrement;
     private String name;
 
@@ -36,6 +36,11 @@ public class Bank implements Report {
 
     public Bank(String name) {
         this.name = name;
+    }
+
+    public Bank(String name, int id) {
+        this.name = name;
+        this.id = id;
     }
 
     public int getId() {
