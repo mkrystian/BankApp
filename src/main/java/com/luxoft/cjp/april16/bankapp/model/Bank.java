@@ -11,13 +11,15 @@ import java.util.*;
  */
 public class Bank implements Report {
 
-
-    private static int autoincrement = 0;
+    @NoDB
     private final List<ClientRegistrationListener> clientRegistrationListeners = new ArrayList<>();
+    @NoDB
     private final List<ClientDeletionListener> clientDeletionListeners = new ArrayList<>();
+    @NoDB
     private final Map<String, List<Client>> clientsMap = new HashMap<>();
     private Set<Client> clients = new HashSet<>();
-    private int id = ++autoincrement;
+    private int id = -1;
+
     private String name;
 
     {
@@ -200,4 +202,6 @@ public class Bank implements Report {
             }
         }
     }
+
+
 }
