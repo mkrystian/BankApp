@@ -2,7 +2,6 @@ package com.luxoft.cjp.april16.bankapp.model;
 
 import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +11,7 @@ import java.util.Map;
  */
 abstract class AbstractAccount implements Account {
 
-    private static int autoincrement = 0;
-    private static Map<String, AccountFactoryCommand> classMap = new HashMap<>();
+    private static final Map<String, AccountFactoryCommand> classMap = new HashMap<>();
 
     static {
         classMap.put("c", new CheckingAccountFactoryMethodCommandImpl());
@@ -84,11 +82,6 @@ abstract class AbstractAccount implements Account {
     @Override
     public int hashCode() {
         return id;
-    }
-
-    @Override
-    public BigDecimal decimalValue() {
-        return new BigDecimal(Math.round(balance));
     }
 
     @Override

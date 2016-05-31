@@ -17,24 +17,12 @@ public class BankInfo {
      */
     private Map<String, List<Client>> clientsByCity;
 
-    public int getNumberOfClients() {
-        return numberOfClients;
-    }
-
     public void setNumberOfClients(int numberOfClients) {
         this.numberOfClients = numberOfClients;
     }
 
-    public double getTotalAccountSum() {
-        return totalAccountSum;
-    }
-
     public void setTotalAccountSum(double totalAccountSum) {
         this.totalAccountSum = totalAccountSum;
-    }
-
-    public Map<String, List<Client>> getClientsByCity() {
-        return clientsByCity;
     }
 
     public void setClientsByCity(Map<String, List<Client>> clientsByCity) {

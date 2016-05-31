@@ -13,10 +13,6 @@ public class ClientExistsException extends BankException {
         this.client = client;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
     public String getClientName() {
         return client.getName();
     }

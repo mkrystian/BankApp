@@ -11,7 +11,7 @@ import com.luxoft.cjp.april16.bankapp.model.dao.exceptions.DAOException;
  */
 class DBBankInfoCommand extends AbstractMenuCommand {
 
-    private BankDAO bankDAO = new BankDAOImpl();
+    private final BankDAO bankDAO = new BankDAOImpl();
 
     @Override
     public void execute() {

@@ -24,12 +24,6 @@ public enum IdentityType implements Serializable {
         public BankServerInterface getBankServer(Bank bank, BankService bankService) {
             return new BankServerRemoteOffice(bank, bankService);
         }
-    },
-    BANK_SERVER {
-        @Override
-        public BankServerInterface getBankServer(Bank bank, BankService bankService) {
-            throw new UnsupportedOperationException();
-        }
     };
 
     public abstract BankServerInterface getBankServer(Bank bank, BankService bankService);

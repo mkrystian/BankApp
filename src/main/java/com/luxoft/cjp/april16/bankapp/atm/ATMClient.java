@@ -10,13 +10,13 @@ import com.luxoft.cjp.april16.bankapp.server.messages.requests.Request;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-04.
  */
-public class ATMClient extends BankClient {
-    public ATMClient(String SERVER, int port, IdentityCard identityCard) {
-        super(SERVER, port, identityCard);
+class ATMClient extends BankClient {
+    private ATMClient(IdentityCard identityCard) {
+        super(2004, identityCard);
     }
 
     public static void main(String[] Args) {
-        ATMClient atmClient = new ATMClient("localhost", 2004, new IdentityCard(IdentityType.ATM, "Test ATM"));
+        ATMClient atmClient = new ATMClient(new IdentityCard(IdentityType.ATM));
         atmClient.testGetBalance();
         atmClient.testWithdraw();
         atmClient.testGetBalance();

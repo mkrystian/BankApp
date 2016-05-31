@@ -8,27 +8,14 @@ import java.io.Serializable;
  */
 public class IdentityCard implements Serializable {
 
-    private IdentityType type;
-    private String name;
+    private final IdentityType type;
 
-    public IdentityCard(IdentityType identityType, String name) {
+    public IdentityCard(IdentityType identityType) {
         this.type = identityType;
-        this.name = name;
     }
 
     public IdentityType getType() {
         return type;
     }
 
-    public void setType(IdentityType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

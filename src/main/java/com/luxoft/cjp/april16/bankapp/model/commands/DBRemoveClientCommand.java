@@ -4,15 +4,11 @@ import com.luxoft.cjp.april16.bankapp.BankCommander;
 import com.luxoft.cjp.april16.bankapp.model.dao.ClientDAOImpl;
 import com.luxoft.cjp.april16.bankapp.model.dao.exceptions.DAOException;
 
-import java.util.Scanner;
-
 /**
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
 class DBRemoveClientCommand extends AbstractMenuCommand {
-
-    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void execute() {

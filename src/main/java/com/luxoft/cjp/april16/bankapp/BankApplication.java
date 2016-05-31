@@ -8,16 +8,16 @@ import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 
 public class BankApplication {
 
+    public static final Bank bank = new Bank("MyBank");
     private static final BankService bankService = new BankServiceImpl();
-    private static final Bank bank = new Bank("MyBank");
-    private static Client[] clients = new Client[5];
-    private static Account[] accounts = new Account[10];
+    private static final Client[] clients = new Client[5];
+    private static final Account[] accounts = new Account[10];
 
     public static void main(String[] args) {
         initialize(bank, bankService);
 
         if (args.length > 0 && args[0].equals("report")) {
-            new BankReport().printReport(bank);
+            new BankReport().printReport();
             return;
         }
         printBankReport();
@@ -62,7 +62,7 @@ public class BankApplication {
 
     }
 
-    public static void modifyBank() {
+    private static void modifyBank() {
         accounts[0].deposit(1000);
         accounts[3].deposit(1300);
         accounts[5].deposit(1000);
@@ -101,7 +101,7 @@ public class BankApplication {
         }
     }
 
-    public static void printBankReport() {
+    private static void printBankReport() {
         bank.printReport();
     }
 

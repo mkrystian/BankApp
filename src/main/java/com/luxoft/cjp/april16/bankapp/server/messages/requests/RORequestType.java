@@ -26,12 +26,6 @@ public enum RORequestType implements Serializable {
             return new FindClientByNameCommand(bank, bankService);
         }
     },
-    ADD_CLIENT {
-        @Override
-        public AbstractRemoteOfficeCommand getCommand(Bank bank, BankService bankService) {
-            return new FindClientByNameCommand(bank, bankService);
-        }
-    },
     REMOVE_CLIENT {
         @Override
         public AbstractRemoteOfficeCommand getCommand(Bank bank, BankService bankService) {

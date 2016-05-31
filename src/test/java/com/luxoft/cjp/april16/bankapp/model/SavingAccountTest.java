@@ -8,10 +8,11 @@ import org.junit.Test;
  * Bank Application for CJP
  * Created by PREZES on 2016-04-16.
  */
+@SuppressWarnings("unused")
 public class SavingAccountTest {
 
     @Test
-    public void deposit() throws Exception {
+    public void deposit() {
         AbstractAccount savingAccount = new SavingAccount(10000);
         savingAccount.deposit(2000);
         Assert.assertEquals("Balance in savingAccount is incorrect", savingAccount.getBalance(), 12000f, 0);

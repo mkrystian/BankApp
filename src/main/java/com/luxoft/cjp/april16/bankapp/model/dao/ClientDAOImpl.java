@@ -20,7 +20,7 @@ import java.util.TreeSet;
  */
 public class ClientDAOImpl extends BaseDAOImpl implements ClientDAO {
 
-    private AccountDAO accountDAO = new AccountDAOImpl();
+    private final AccountDAO accountDAO = new AccountDAOImpl();
 
     @Override
     public Client findClientByName(Bank bank, String name) throws DAOException, ClientNotFoundException {
@@ -170,6 +170,7 @@ public class ClientDAOImpl extends BaseDAOImpl implements ClientDAO {
     public void remove(Client client) throws DAOException {
         String sql = "DELETE FROM DB_CLIENT WHERE CLIENT_ID = (?)";
         PreparedStatement stmt;
+        //noinspection Duplicates
         try {
             openConnection();
             stmt = conn.prepareStatement(sql);

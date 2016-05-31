@@ -8,9 +8,8 @@ import com.luxoft.cjp.april16.bankapp.service.exceptions.ClientNotFoundByPeselEx
 
 
 public abstract class AbstractATMCommand implements ATMCommand {
-    private Bank bank;
-    private BankService bankService;
-    private String pesel;
+    private final Bank bank;
+    private final BankService bankService;
 
     AbstractATMCommand(Bank bank, BankService bankService) {
         this.bank = bank;
@@ -18,7 +17,7 @@ public abstract class AbstractATMCommand implements ATMCommand {
     }
 
     Client getClient(ATMRequest request) throws ClientNotFoundByPeselException {
-        pesel = request.getData()[0];
+        String pesel = request.getData()[0];
         Client client;
         client = bankService.getClientByPesel(bank, pesel);
         return client;

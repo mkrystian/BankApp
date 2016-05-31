@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 class FeedDataCommand implements Command {
 
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void execute() {

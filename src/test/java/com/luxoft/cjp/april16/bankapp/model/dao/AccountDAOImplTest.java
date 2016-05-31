@@ -1,7 +1,6 @@
 package com.luxoft.cjp.april16.bankapp.model.dao;
 
 import com.luxoft.cjp.april16.bankapp.model.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -15,6 +14,7 @@ import static org.hamcrest.core.Is.is;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-18.
  */
+@SuppressWarnings("unused")
 public class AccountDAOImplTest {
 
     private AccountDAO accountDAO;
@@ -24,7 +24,7 @@ public class AccountDAOImplTest {
     private Account savingAccount;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         accountDAO = new AccountDAOImpl();
         mockClient = Mockito.mock(Client.class);
         mockBank = Mockito.mock(Bank.class);
@@ -33,11 +33,6 @@ public class AccountDAOImplTest {
 
         checkingAccount = new CheckingAccount(999, 1999);
         savingAccount = new SavingAccount(499);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test

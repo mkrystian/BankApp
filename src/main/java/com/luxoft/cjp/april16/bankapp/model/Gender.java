@@ -12,8 +12,8 @@ public enum Gender implements Serializable{
     MALE("Mr. ", "male"),
     FEMALE("Mrs. ", "female");
 
-    private String salutation;
-    private String name;
+    private final String salutation;
+    private final String name;
 
     Gender(String salutation, String name) {
         this.salutation = salutation;

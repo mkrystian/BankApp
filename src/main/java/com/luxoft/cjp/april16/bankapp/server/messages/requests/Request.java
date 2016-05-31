@@ -10,35 +10,16 @@ import java.io.Serializable;
  * Created by KMajewski on 2016-04-28.
  */
 public abstract class Request implements Serializable {
+    private final IdentityCard identityCard;
     private String[] data;
-    private IdentityCard identityCard;
 
-    private boolean closeConnection = false;
-
-    public Request(IdentityCard identityCard) {
+    Request(IdentityCard identityCard) {
         this.identityCard = identityCard;
     }
-
-    public boolean isCloseConnection() {
-        return closeConnection;
-    }
-
-    public void setCloseConnection(boolean closeConnection) {
-        this.closeConnection = closeConnection;
-    }
-
 
 
     public IdentityType getIdentityType() {
         return identityCard.getType();
-    }
-
-    public IdentityCard getIdentityCard() {
-        return identityCard;
-    }
-
-    public void setIdentityCard(IdentityCard identityCard) {
-        this.identityCard = identityCard;
     }
 
     public String[] getData() {

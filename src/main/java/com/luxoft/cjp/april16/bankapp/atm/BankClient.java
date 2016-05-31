@@ -12,17 +12,15 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 abstract class BankClient {
+    final IdentityCard identityCard;
     private final String SERVER;
     private final int port;
-    private final int sleepingTime = 500;
-    private final int maxRetry = 5;
-    IdentityCard identityCard;
     private Socket requestSocket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
-    BankClient(String SERVER, int port, IdentityCard identityCard) {
-        this.SERVER = SERVER;
+    BankClient(int port, IdentityCard identityCard) {
+        this.SERVER = "localhost";
         this.port = port;
         this.identityCard = identityCard;
     }
@@ -31,12 +29,14 @@ abstract class BankClient {
         try {
             // 1. creating a socket to connect to the server
             //Try to reconnect
+            int maxRetry = 5;
             for (int i = 0; i < maxRetry; i++)
                 try {
                     requestSocket = new Socket(SERVER, port);
                     break;
                 } catch (ConnectException e) {
                     try {
+                        int sleepingTime = 500;
                         Thread.sleep(sleepingTime);
                     } catch (InterruptedException e1) {
                         if (i == maxRetry - 1)

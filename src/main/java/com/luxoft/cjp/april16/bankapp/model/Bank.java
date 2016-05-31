@@ -17,10 +17,9 @@ public class Bank implements Report {
     private final List<ClientDeletionListener> clientDeletionListeners = new ArrayList<>();
     @NoDB
     private final Map<String, List<Client>> clientsMap = new HashMap<>();
-    private Set<Client> clients = new HashSet<>();
+    private final Set<Client> clients = new HashSet<>();
+    private final String name;
     private int id = -1;
-
-    private String name;
 
     {
         clientRegistrationListeners.add(client -> {
@@ -100,14 +99,6 @@ public class Bank implements Report {
 
     }
 
-    public void addClientRegistrationListener(ClientRegistrationListener clientRegistrationListener) {
-        clientRegistrationListeners.add(clientRegistrationListener);
-    }
-
-    public void removeClientRegistrationListener(ClientRegistrationListener clientRegistrationListener) {
-        clientRegistrationListeners.remove(clientRegistrationListener);
-    }
-
     public Set<Client> getClients() {
         return Collections.unmodifiableSet(clients);
     }
@@ -156,6 +147,7 @@ public class Bank implements Report {
         void onClientDeleted(Client client);
     }
 
+    @SuppressWarnings("unused")
     public class EmailNotificationListener implements ClientRegistrationListener {
         @Override
         public void onClientAdded(Client client) {
@@ -170,6 +162,7 @@ public class Bank implements Report {
     /**
      * Created by KMajewski on 2016-04-13.
      */
+    @SuppressWarnings("unused")
     public class PrintClientListener implements ClientRegistrationListener {
         @Override
         public void onClientAdded(Client client) {

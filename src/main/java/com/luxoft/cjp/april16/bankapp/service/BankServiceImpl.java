@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class BankServiceImpl implements BankService {
 
-    private String file = System.getProperty("user.dir") + "\\clients\\serialized\\serialized.ser";
+    private final String file = System.getProperty("user.dir") + "\\clients\\serialized\\serialized.ser";
 
     @Override
     public void addClient(Bank bank, Client client) {
@@ -73,6 +73,7 @@ public class BankServiceImpl implements BankService {
         File outboundFile = new File(file);
         if (!outboundFile.exists()) {
             try {
+                //noinspection ResultOfMethodCallIgnored
                 outboundFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();

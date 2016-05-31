@@ -24,7 +24,7 @@ public class TestService {
         fieldsObject1 = Arrays.stream(fieldsObject1).filter(fie -> fie.getAnnotation(NoDB.class) == null).toArray(Field[]::new);
         fieldsObject2 = Arrays.stream(fieldsObject2).filter(fie -> fie.getAnnotation(NoDB.class) == null).toArray(Field[]::new);
 
-        // Return false if list of annotated fields for objects are diferent
+        // Return false if list of annotated fields for objects are different
         if (!Arrays.equals(fieldsObject1, fieldsObject2)) return false;
 
         for (int i = 0; i < fieldsObject1.length; i++) {

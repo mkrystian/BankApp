@@ -8,7 +8,7 @@ import com.luxoft.cjp.april16.bankapp.server.identitycards.IdentityCard;
  */
 public class ATMRequest extends Request {
 
-    private ATMRequestType requestType;
+    private final ATMRequestType requestType;
 
     public ATMRequest(IdentityCard identityCard, ATMRequestType atmRequestType) {
         super(identityCard);
@@ -19,7 +19,4 @@ public class ATMRequest extends Request {
         return requestType;
     }
 
-    public void setRequestType(ATMRequestType requestType) {
-        this.requestType = requestType;
-    }
 }

@@ -20,6 +20,7 @@ import java.util.concurrent.Future;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-09.
  */
+@SuppressWarnings("unused")
 public class BankServerTradedTest {
 
     @Test
@@ -47,7 +48,7 @@ public class BankServerTradedTest {
 
         List<Future<Long>> threadList = new ArrayList<>(1000);
         for (int i = 0; i < numberOfThreads; i++) {
-            Future<Long> future = executor.submit(new BankClientMock("localhost", port, new IdentityCard(IdentityType.ATM, "Client Mock"), client));
+            Future<Long> future = executor.submit(new BankClientMock(port, new IdentityCard(IdentityType.ATM), client));
             threadList.add(future);
         }
 

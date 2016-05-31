@@ -8,9 +8,9 @@ import java.sql.SQLException;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-16.
  */
-public class GetConnection {
+class GetConnection {
     public static void main(String[] args) {
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:tcp://localhost:9092/~\\default", "admin", "");) {
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:tcp://localhost:9092/~\\default", "admin", "")) {
             connection.prepareCall("DROP TABLE DB_ACCOUNT").execute();
         } catch (SQLException e) {
             e.printStackTrace();

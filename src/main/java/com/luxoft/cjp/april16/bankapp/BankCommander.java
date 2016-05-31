@@ -13,11 +13,11 @@ import com.luxoft.cjp.april16.bankapp.service.BankServiceImpl;
 
 
 public class BankCommander {
+    public static final BankService bankService = new BankServiceImpl();
+    private static final BankDAO bankDAO = new BankDAOImpl();
     public static Bank currentBank = new Bank("MyBank");
-    public static BankService bankService = new BankServiceImpl();
     public static Client currentClient;
     public static Command currentCommand;
-    private static BankDAO bankDAO = new BankDAOImpl();
 
     public static void main(String args[]) {
 
@@ -27,8 +27,9 @@ public class BankCommander {
             e.printStackTrace();
         }
         System.out.println(System.getProperty("user.dir"));
-        //BankApplication.initialize(currentBank, bankService);
+
         currentCommand = new MainMenuCommand();
+        //noinspection InfiniteLoopStatement
         while (true) {
             currentCommand.execute();
             try {

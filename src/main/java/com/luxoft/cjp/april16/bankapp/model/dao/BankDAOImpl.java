@@ -19,7 +19,7 @@ import java.util.TreeMap;
 
 public class BankDAOImpl extends BaseDAOImpl implements BankDAO {
 
-    private ClientDAO clientDAO = new ClientDAOImpl();
+    private final ClientDAO clientDAO = new ClientDAOImpl();
 
     public Bank getBankByName(String name) throws DAOException, BankNotFoundException {
         Bank bank = new Bank(name);
@@ -118,6 +118,7 @@ public class BankDAOImpl extends BaseDAOImpl implements BankDAO {
     public void remove(Bank bank) throws DAOException {
         String sql = "DELETE FROM DB_BANK WHERE BANK_ID = (?)";
         PreparedStatement stmt;
+        //noinspection Duplicates
         try {
             openConnection();
             stmt = conn.prepareStatement(sql);
@@ -184,6 +185,7 @@ public class BankDAOImpl extends BaseDAOImpl implements BankDAO {
                 "  WHERE BANK_CLIENT_BANK_ID = ?";
         PreparedStatement stmt;
         float totalAmount = 0;
+        //noinspection Duplicates
         try {
             openConnection();
             stmt = conn.prepareStatement(sql);
@@ -212,6 +214,7 @@ public class BankDAOImpl extends BaseDAOImpl implements BankDAO {
         String sql = "SELECT COUNT(*) FROM DB_BANK_CLIENT WHERE BANK_CLIENT_BANK_ID = ?";
         PreparedStatement stmt;
         int numberOfClients = 0;
+        //noinspection Duplicates
         try {
             openConnection();
             stmt = conn.prepareStatement(sql);

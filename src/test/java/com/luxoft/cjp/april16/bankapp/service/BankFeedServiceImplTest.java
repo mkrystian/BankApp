@@ -8,18 +8,20 @@ import org.junit.Test;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-27.
  */
+@SuppressWarnings("unused")
+
 public class BankFeedServiceImplTest {
 
     private BankFeedService bankFeedService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         Bank bank = new Bank("MyBank");
         bankFeedService = new BankFeedServiceImpl(bank);
     }
 
     @Test
-    public void loadFeed() throws Exception {
+    public void loadFeed() {
         bankFeedService.loadFeed();
     }
 

@@ -8,9 +8,9 @@ import java.util.Scanner;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-18.
  */
-public class DepositCommand extends AbstractMenuCommand {
+class DepositCommand extends AbstractMenuCommand {
 
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void execute() {

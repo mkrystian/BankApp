@@ -20,7 +20,7 @@ public enum AccountType {
         }
     };
 
-    private String name;
+    private final String name;
 
     AccountType(String s) {
         name = s;
@@ -47,7 +47,7 @@ public enum AccountType {
 
     private static class IncorrectAccountTypeException extends RuntimeException {
 
-        private String message;
+        private final String message;
 
         IncorrectAccountTypeException(String message) {
             this.message = message;

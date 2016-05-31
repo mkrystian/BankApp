@@ -12,8 +12,8 @@ import com.luxoft.cjp.april16.bankapp.service.BankService;
  */
 public class BankServerRemoteOffice implements BankServerInterface {
 
-    private Bank bank;
-    private BankService bankService;
+    private final Bank bank;
+    private final BankService bankService;
 
     public BankServerRemoteOffice(Bank bank, BankService bankService) {
         this.bank = bank;

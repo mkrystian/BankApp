@@ -4,8 +4,10 @@ import com.luxoft.cjp.april16.bankapp.model.dao.exceptions.DAOException;
 
 import java.sql.Connection;
 
-public interface BaseDAO {
+interface BaseDAO {
+    @SuppressWarnings("unused")
     Connection openConnection() throws DAOException;
 
+    @SuppressWarnings("unused")
     void closeConnection();
 }

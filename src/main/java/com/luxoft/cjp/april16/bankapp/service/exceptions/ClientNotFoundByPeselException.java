@@ -8,7 +8,7 @@ import java.io.IOException;
  */
 public class ClientNotFoundByPeselException extends IOException {
 
-    private String pesel;
+    private final String pesel;
 
     public ClientNotFoundByPeselException(String pesel) {
         this.pesel = pesel;

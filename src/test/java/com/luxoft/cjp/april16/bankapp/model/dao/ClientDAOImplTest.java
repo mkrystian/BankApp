@@ -3,7 +3,6 @@ package com.luxoft.cjp.april16.bankapp.model.dao;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
 import com.luxoft.cjp.april16.bankapp.model.Gender;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -17,23 +16,19 @@ import static org.junit.Assert.assertThat;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-19.
  */
+@SuppressWarnings("unused")
 public class ClientDAOImplTest {
     private Client client;
     private ClientDAO clientDAO;
     private Bank mockBank;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         clientDAO = new ClientDAOImpl();
         mockBank = Mockito.mock(Bank.class);
         Mockito.when(mockBank.getId()).thenReturn(1);
         mockBank.getClients();
         client = new Client("Test Database Client", Gender.MALE, "99921298512", 2500, "dsf@abc.com", "Test City");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test
@@ -45,7 +40,7 @@ public class ClientDAOImplTest {
     @Test
     public void getAllClients() throws Exception {
         final Set<Client> allClients = clientDAO.getAllClients(mockBank);
-        assertThat(allClients.size(), is(5));
+        assertThat(allClients.size(), is(4));
     }
 
     @Test

@@ -35,10 +35,6 @@ public class CheckingAccount extends AbstractAccount {
         return overdraft;
     }
 
-    public void setOverdraft(float overdraft) {
-        this.overdraft = overdraft;
-    }
-
     @Override
     public synchronized void withdraw(float x) throws NotEnoughFoundsException {
         if (super.getBalance() + overdraft >= x) {

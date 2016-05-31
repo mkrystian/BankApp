@@ -14,8 +14,8 @@ import java.util.Scanner;
  */
 class DBSelectBankCommand implements Command {
 
-    private Scanner scanner = new Scanner(System.in);
-    private BankDAO bankDAO = new BankDAOImpl();
+    private final Scanner scanner = new Scanner(System.in);
+    private final BankDAO bankDAO = new BankDAOImpl();
 
     @Override
     public void execute() {
@@ -28,7 +28,7 @@ class DBSelectBankCommand implements Command {
         } catch (DAOException e) {
             e.printStackTrace();
         } catch (BankNotFoundException e) {
-            System.out.println("Bank not found - Interupted!");
+            System.out.println("Bank not found - interrupted!");
         }
 
     }

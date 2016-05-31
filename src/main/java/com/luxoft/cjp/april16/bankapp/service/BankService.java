@@ -20,6 +20,7 @@ public interface BankService {
 
     void addAccount(Client client, Account account);
 
+    @SuppressWarnings("unused")
     void setActiveAccount(Client client, Account account);
 
     Set<Account> getAccounts(Client client);

@@ -12,8 +12,8 @@ import com.luxoft.cjp.april16.bankapp.service.BankService;
  */
 public class BankServerATM implements BankServerInterface {
 
-    private Bank bank;
-    private BankService bankService;
+    private final Bank bank;
+    private final BankService bankService;
 
     public BankServerATM(Bank bank, BankService bankService) {
         this.bank = bank;

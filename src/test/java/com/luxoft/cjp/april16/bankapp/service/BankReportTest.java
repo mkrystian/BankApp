@@ -14,14 +14,15 @@ import java.util.Map;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-19.
  */
+@SuppressWarnings("unused")
 public class BankReportTest {
 
-    Bank bank = new Bank("Test Bank");
-    BankService bankService = new BankServiceImpl();
-    BankReport bankReport = new BankReport();
+    private final Bank bank = new Bank("Test Bank");
+    private final BankService bankService = new BankServiceImpl();
+    private final BankReport bankReport = new BankReport();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         BankApplication.initialize(bank, bankService);
     }
 
@@ -32,7 +33,7 @@ public class BankReportTest {
 
     @Test
     public void testGetAccountsNumber() throws Exception {
-        Assert.assertEquals(bankReport.getAccountsNumber(bank), 10);
+        Assert.assertEquals(bankReport.getAccountsNumber(bank), 5);
     }
 
     @Test

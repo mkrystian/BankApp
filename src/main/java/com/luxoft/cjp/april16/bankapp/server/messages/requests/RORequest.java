@@ -9,7 +9,7 @@ import com.luxoft.cjp.april16.bankapp.server.identitycards.IdentityCard;
 public class RORequest extends Request {
 
 
-    private RORequestType requestType;
+    private final RORequestType requestType;
 
     public RORequest(IdentityCard identityCard, RORequestType roRequestType) {
         super(identityCard);
@@ -20,7 +20,4 @@ public class RORequest extends Request {
         return requestType;
     }
 
-    public void setRequestType(RORequestType requestType) {
-        this.requestType = requestType;
-    }
 }

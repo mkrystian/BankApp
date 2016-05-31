@@ -6,7 +6,7 @@ package com.luxoft.cjp.april16.bankapp.model.exceptions;
  */
 public class IncorrectGenderException extends RuntimeException {
 
-    String message;
+    private final String message;
 
     public IncorrectGenderException(String message) {
         this.message = message;

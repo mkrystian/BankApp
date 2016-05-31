@@ -16,10 +16,10 @@ import java.util.concurrent.Callable;
  */
 public class BankClientMock extends BankClient implements Callable<Long> {
 
-    private String pesel;
+    private final String pesel;
 
-    public BankClientMock(String SERVER, int port, IdentityCard identityCard, Client client) {
-        super(SERVER, port, identityCard);
+    public BankClientMock(int port, IdentityCard identityCard, Client client) {
+        super(port, identityCard);
         this.pesel = client.getPesel();
     }
 
@@ -27,7 +27,7 @@ public class BankClientMock extends BankClient implements Callable<Long> {
     public static void main(String[] Args) {
         Client client = new Client("Mock Client", Gender.MALE, "78021298512", 2000, "mock@mail.com", "Mock");
 
-        BankClientMock bankClientMock = new BankClientMock("localhost", 2004, new IdentityCard(IdentityType.ATM, "Test ATM"), client);
+        BankClientMock bankClientMock = new BankClientMock(2004, new IdentityCard(IdentityType.ATM), client);
         bankClientMock.withdraw();
     }
 
@@ -39,11 +39,6 @@ public class BankClientMock extends BankClient implements Callable<Long> {
 
         sendRequest(request);
 
-    }
-
-
-    public void run() {
-        withdraw();
     }
 
     @Override

@@ -8,9 +8,8 @@ import com.luxoft.cjp.april16.bankapp.service.exceptions.ClientNotFoundByPeselEx
 
 
 public abstract class AbstractRemoteOfficeCommand implements ROCommand {
-    Bank bank;
-    BankService bankService;
-    String pesel;
+    final Bank bank;
+    final BankService bankService;
 
     AbstractRemoteOfficeCommand(Bank bank, BankService bankService) {
         this.bank = bank;
@@ -18,7 +17,7 @@ public abstract class AbstractRemoteOfficeCommand implements ROCommand {
     }
 
     Client getClient(RORequest request) throws ClientNotFoundByPeselException {
-        pesel = request.getData()[0];
+        String pesel = request.getData()[0];
         Client client;
         client = bankService.getClientByPesel(bank, pesel);
 

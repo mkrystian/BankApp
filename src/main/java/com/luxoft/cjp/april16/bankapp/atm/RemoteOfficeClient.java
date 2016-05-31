@@ -10,35 +10,35 @@ import com.luxoft.cjp.april16.bankapp.server.messages.requests.Request;
  * BankApp for CJP
  * Created by KMajewski on 2016-05-04.
  */
-public class RemoteOfficeClient extends BankClient {
-    public RemoteOfficeClient(String SERVER, int port, IdentityCard identityCard) {
-        super(SERVER, port, identityCard);
+class RemoteOfficeClient extends BankClient {
+    private RemoteOfficeClient(IdentityCard identityCard) {
+        super(2004, identityCard);
     }
 
     public static void main(String[] Args) {
-        RemoteOfficeClient remoteOfficeClient = new RemoteOfficeClient("localhost", 2004, new IdentityCard(IdentityType.REMOTE_OFFICE, "Test Remote Office"));
+        RemoteOfficeClient remoteOfficeClient = new RemoteOfficeClient(new IdentityCard(IdentityType.REMOTE_OFFICE));
         System.out.println(remoteOfficeClient.getStatistics());
-        System.out.println(remoteOfficeClient.findClientByName("John"));
-        System.out.println(remoteOfficeClient.removeClient("78041298513"));
+        System.out.println(remoteOfficeClient.findClientByName());
+        System.out.println(remoteOfficeClient.removeClient());
         System.out.println(remoteOfficeClient.getStatistics());
     }
 
-    String getStatistics() {
+    private String getStatistics() {
         Request request = new RORequest(identityCard, RORequestType.GET_STATISTICS);
         return sendRequest(request).getMessage();
     }
 
-    String findClientByName(String name) {
+    private String findClientByName() {
         Request request = new RORequest(identityCard, RORequestType.FIND_CLIENT_BY_NAME);
         request.setData(new String[1]);
-        request.getData()[0] = name;
+        request.getData()[0] = "John";
         return sendRequest(request).getMessage();
     }
 
-    String removeClient(String pesel) {
+    private String removeClient() {
         Request request = new RORequest(identityCard, RORequestType.REMOVE_CLIENT);
         request.setData(new String[1]);
-        request.getData()[0] = pesel;
+        request.getData()[0] = "78041298513";
         return sendRequest(request).getMessage();
     }
 }

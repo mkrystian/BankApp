@@ -16,11 +16,11 @@ import java.util.TreeMap;
  */
 public class BankReport {
 
-    public int getNumberOfClients(Bank bank) {
+    int getNumberOfClients(Bank bank) {
         return bank.getClients().size();
     }
 
-    public int getAccountsNumber(Bank bank) {
+    int getAccountsNumber(Bank bank) {
         int accountsNumbers = 0;
         for (Client client : bank.getClients()) {
             accountsNumbers += client.getAccounts().size();
@@ -28,7 +28,7 @@ public class BankReport {
         return accountsNumbers;
     }
 
-    public float getBankCreditSum(Bank bank) {
+    float getBankCreditSum(Bank bank) {
         float creditSum = 0;
         for (Client client : bank.getClients()) {
             for (Account account : client.getAccounts()) {
@@ -38,7 +38,7 @@ public class BankReport {
         return creditSum;
     }
 
-    public Map<String, List<Client>> getClientsByCity(Bank bank) {
+    Map<String, List<Client>> getClientsByCity(Bank bank) {
         Map<String, List<Client>> map = new TreeMap<>();
         //BankApplication.initialize( bank , new BankServiceImpl());
         for (Client client : bank.getClients()) {
@@ -52,12 +52,12 @@ public class BankReport {
         return map;
     }
 
-    public void printReport(Bank bank) {
+    public void printReport() {
         System.out.println("Bank Report: \nAccounts number: " +
-                getAccountsNumber(bank) + "\nBank credit sum: " +
-                getBankCreditSum(bank) + "\nNumber of clients in particular cities: ");
+                getAccountsNumber(com.luxoft.cjp.april16.bankapp.BankApplication.bank) + "\nBank credit sum: " +
+                getBankCreditSum(com.luxoft.cjp.april16.bankapp.BankApplication.bank) + "\nNumber of clients in particular cities: ");
 
-        for (Map.Entry<String, List<Client>> entrySet : getClientsByCity(bank).entrySet()) {
+        for (Map.Entry<String, List<Client>> entrySet : getClientsByCity(com.luxoft.cjp.april16.bankapp.BankApplication.bank).entrySet()) {
             System.out.println(entrySet.getKey() + " : " + entrySet.getValue().size());
         }
     }

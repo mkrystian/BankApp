@@ -9,9 +9,6 @@ import java.sql.SQLException;
 abstract class BaseDAOImpl implements BaseDAO {
     Connection conn;
 
-    BaseDAOImpl() {
-    }
-
     public Connection openConnection() throws DAOException {
         try {
             Class.forName("org.h2.Driver"); // this is driver for H2

@@ -4,7 +4,6 @@ import com.luxoft.cjp.april16.bankapp.model.exceptions.NotEnoughFoundsException;
 import com.luxoft.cjp.april16.bankapp.service.Report;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Bank Application for CJP
@@ -22,8 +21,6 @@ public interface Account extends Report, Comparable, Serializable {
     void withdraw(float x) throws NotEnoughFoundsException;
 
     void transferTo(Account account, float amount) throws NotEnoughFoundsException;
-
-    BigDecimal decimalValue();
 
     String toString();
 

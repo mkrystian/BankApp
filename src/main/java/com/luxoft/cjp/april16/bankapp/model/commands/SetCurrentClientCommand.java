@@ -5,8 +5,8 @@ import com.luxoft.cjp.april16.bankapp.model.Client;
 
 import java.util.Scanner;
 
-public class SetCurrentClientCommand extends AbstractMenuCommand {
-    private Scanner scanner = new Scanner(System.in);
+class SetCurrentClientCommand extends AbstractMenuCommand {
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void execute() {

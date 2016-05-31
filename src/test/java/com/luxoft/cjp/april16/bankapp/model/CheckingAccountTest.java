@@ -8,19 +8,15 @@ import org.junit.Test;
  * Bank Application for CJP
  * Created by PREZES on 2016-04-16.
  */
+@SuppressWarnings("unused")
 public class CheckingAccountTest {
 
     @Test
-    public void withdraw() throws Exception {
+    public void withdraw() {
         AbstractAccount checkingAccount = new CheckingAccount(1000, 500);
         Assert.assertEquals("Balance in checkingAccount is incorrect", checkingAccount.getBalance(), 1000, 0);
     }
 
-
-    @Test
-    public void deposit() throws Exception {
-
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCheckingAccountIllegalArgumentException() throws Exception {

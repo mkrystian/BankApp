@@ -3,16 +3,21 @@ package com.luxoft.cjp.april16.bankapp.model.dao;
 import com.luxoft.cjp.april16.bankapp.model.*;
 import com.luxoft.cjp.april16.bankapp.model.dao.exceptions.ConnectionNotFoundException;
 import com.luxoft.cjp.april16.bankapp.model.dao.exceptions.DAOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.Set;
 import java.util.TreeSet;
+
 
 /**
  * BankApp for CJP
  * Created by KMajewski on 2016-05-18.
  */
 class AccountDAOImpl extends BaseDAOImpl implements AccountDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(AccountDAOImpl.class);
     @Override
     public void save(Account account, Bank bank, Client client) throws DAOException {
         if (account.getId() == -1) {
@@ -40,9 +45,11 @@ class AccountDAOImpl extends BaseDAOImpl implements AccountDAO {
             stmt.setFloat(4, account.getId());
             stmt.executeUpdate();
             conn.commit();
+            logger.debug("Account updated in DB: ", account.toString());
+
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Cannot update account in DB: ", account.toString(), e);
             throw new DAOException();
         } finally {
             closeConnection();
@@ -83,9 +90,10 @@ class AccountDAOImpl extends BaseDAOImpl implements AccountDAO {
                 throw new DAOException();
             }
             conn.commit();
+            logger.debug("Account added to DB: " + account.toString());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Cannot insert account to DB: ", account.toString(), e);
             throw new DAOException();
         } finally {
             closeConnection();
@@ -97,13 +105,16 @@ class AccountDAOImpl extends BaseDAOImpl implements AccountDAO {
         int connection;
         try {
             connection = findBankClientConnection(bank, client);
+            logger.debug("Found Bank - Client relation, id: ", connection);
         } catch (ConnectionNotFoundException e) {
             connection = createBankClientConnection(bank, client);
+            logger.debug("Bank - Client connection not found, created id: ", connection);
         }
         return connection;
     }
 
     private int createBankClientConnection(Bank bank, Client client) throws DAOException {
+        //language=H2
         String sql = "INSERT INTO DB_BANK_CLIENT (BANK_CLIENT_BANK_ID, BANK_CLIENT_CLIENT_ID) VALUES ( ? , ? )";
         PreparedStatement stmt;
         int connection = 0;
@@ -175,9 +186,10 @@ class AccountDAOImpl extends BaseDAOImpl implements AccountDAO {
             stmt.setInt(1, account.getId());
             stmt.execute();
             conn.commit();
+            logger.debug("Account deleted from DB: " + account.toString());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Cannot delete account: ", account.toString(), e);
             throw new DAOException();
         } finally {
             closeConnection();

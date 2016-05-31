@@ -3,7 +3,6 @@ package com.luxoft.cjp.april16.bankapp.service;
 import com.luxoft.cjp.april16.bankapp.BankApplication;
 import com.luxoft.cjp.april16.bankapp.model.Bank;
 import com.luxoft.cjp.april16.bankapp.model.Client;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,14 +16,16 @@ import static org.junit.Assert.assertThat;
  * Bank Application for CJP
  * Created by PREZES on 2016-04-27.
  */
+@SuppressWarnings("unused")
 public class BankServiceImplTest {
 
-    private static Bank bank = new Bank("Test Bank");
-    private static BankService bankService = new BankServiceImpl();
+    private static final Bank bank = new Bank("Test Bank");
+    private static final BankService bankService = new BankServiceImpl();
     private static Client client;
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    @SuppressWarnings("unused")
+    public static void setUp() {
         BankApplication.initialize(bank, bankService);
         Iterator<Client> iterator = bankService.getClients(bank).iterator();
 
@@ -33,12 +34,12 @@ public class BankServiceImplTest {
     }
 
     @Test
-    public void saveClient() throws Exception {
+    public void saveClient() {
         bankService.saveClient(client);
     }
 
     @Test
-    public void loadClient() throws Exception {
+    public void loadClient() {
         Client loadedClient = bankService.loadClient();
         assertThat( "Incorrect data after deserialization" ,client.toString() , is(loadedClient.toString()));
     }

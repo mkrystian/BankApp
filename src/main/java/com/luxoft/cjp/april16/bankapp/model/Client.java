@@ -14,16 +14,15 @@ import java.util.TreeSet;
  */
 public class Client implements Report, Comparable, Serializable {
 
-    private static int autoincrement = 0;
-    private Set<Account> accounts = new TreeSet<>();
+    private final Set<Account> accounts = new TreeSet<>();
+    private final String pesel;
+    private final String name;
+    private final Gender gender;
+    private final String email;
+    private final String city;
     private int id = -1;
-    private String pesel;
-    private String name;
-    private Gender gender;
     private Account activeAccount;
     private float initialOverdraft = 0;
-    private String email;
-    private String city;
 
     public Client(String name, Gender gender, String pesel, float initialOverdraft, String email, String city) {
         this.pesel = pesel;
@@ -64,10 +63,6 @@ public class Client implements Report, Comparable, Serializable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Account getActiveAccount() {
         return activeAccount;
     }
@@ -78,10 +73,6 @@ public class Client implements Report, Comparable, Serializable {
 
     public float getInitialOverdraft() {
         return initialOverdraft;
-    }
-
-    public void setInitialOverdraft(float initialOverdraft) {
-        this.initialOverdraft = initialOverdraft;
     }
 
     public float getBalance() {
@@ -115,16 +106,8 @@ public class Client implements Report, Comparable, Serializable {
         accounts.add(account);
     }
 
-    public void removeAccount(Account account) {
-        accounts.remove(account);
-    }
-
     public Gender getGender() {
         return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     @Override
@@ -160,15 +143,8 @@ public class Client implements Report, Comparable, Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 }

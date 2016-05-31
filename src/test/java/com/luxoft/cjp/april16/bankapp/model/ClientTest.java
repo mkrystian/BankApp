@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.not;
  * BankApp for CJP
  * Created by KMajewski on 2016-04-19.
  */
+@SuppressWarnings("unused")
 public class ClientTest {
 
     @Test
@@ -35,8 +36,6 @@ public class ClientTest {
 
         Assert.assertEquals(client1.equals(client2), false);
         Assert.assertEquals(client2.equals(client3), true);
-        Assert.assertEquals(client1.equals(client1), true);
-        Assert.assertEquals(client2.equals(client2), true);
     }
 
 }

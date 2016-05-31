@@ -16,4 +16,9 @@ abstract class AbstractNotFoundException extends Exception {
         this.name = name;
     }
 
+    @Override
+    public String getMessage() {
+        return "Not found: " + name;
+    }
+
 }

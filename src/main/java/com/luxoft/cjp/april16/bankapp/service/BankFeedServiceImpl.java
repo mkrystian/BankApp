@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
  */
 public class BankFeedServiceImpl implements BankFeedService {
 
-    private String directory;
-    private Bank bank;
+    private final String directory;
+    private final Bank bank;
 
     public BankFeedServiceImpl(Bank bank, String directory) {
         this.bank = bank;
@@ -52,9 +52,7 @@ public class BankFeedServiceImpl implements BankFeedService {
     public void loadFeed() {
         List<File> filesList = readFilesList();
 
-        for (File file : filesList) {
-            loadFileToBank(file);
-        }
+        filesList.forEach(this::loadFileToBank);
 
 
     }
